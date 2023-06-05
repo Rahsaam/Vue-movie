@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn-primary {
+    @apply text-white bg-my-color-dark-orange p-2 inline-block font-bold rounded-xl hover:text-my-color-dark-orange hover:bg-white transition md:text-xl
+}
+.movie-box-icon-main {
+    @apply bg-white p-2 text-black rounded-lg text-2xl font-bold cursor-pointer inline-block hover:bg-my-color-dark-orange hover:text-white transition
+}
