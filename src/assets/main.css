@@ -12,4 +12,7 @@ body {
     .movie-box-icon-main {
         @apply bg-white p-2 text-black rounded-lg text-2xl font-bold cursor-pointer inline-block hover:bg-my-color-dark-orange hover:text-white transition
     }
+    .imdb-point {
+        @apply text-2sm bg-my-color-hover-gray p-1 rounded-full border-2
+    }
 }

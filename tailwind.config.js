@@ -21,6 +21,10 @@ export default {
       height: {
         '100': '28rem',
       },
+      fontSize: {
+        '3sm': '10px',
+        '2sm': '11px',
+      },
     },
   },
   plugins: [],
