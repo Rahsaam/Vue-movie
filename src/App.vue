@@ -3,7 +3,10 @@
     <main-poster/>
     <middle-navbar/>
     <trend-movies :data="trendmovies"/>
-    <movie-list :data="movielist"/>
+    <movie-list 
+    :movieList="movielist"
+    :oldMovies="oldMovies"
+    :tvShows  ="tvShows"/>
   </div>
 </template>
 
@@ -208,6 +211,74 @@ import movieList from './components/MovieList.vue'
             product: "movie - America - 1h30min",
             id: 6
         },
+    ]
+
+    // Old movies
+    const oldMovies = [
+        {
+            img: movie2,
+            name: 'Morbius',
+            id: 1
+        },
+        {
+            img: movie4,
+            name:'Free guy',
+            id: 2
+        },
+        {
+            img: movie6,
+            name: 'Uncharted',
+            id: 3
+        },
+        {
+            img: movie8,
+            name: 'kings men',
+            id: 4
+        }
+    ]
+
+
+    const tvShows = [
+        {
+            img: movie1,
+            name: 'sonic',
+            id: 1
+        },
+        {
+            img: movie2,
+            name: 'Morbius',
+            id: 2
+        },
+        {
+            img: movie3,
+            name:'adam project',
+            id: 3
+        },
+        {
+            img: movie4,
+            name:'free guy',
+            id: 4
+        },
+        {
+            img: movie6,
+            name:'uncharted',
+            id: 6
+        },
+        {
+            img: movie7,
+            name: 'Death nile',
+            id: 7
+        },
+        {
+            img: movie8,
+            name: 'king men',
+            id: 8
+        },
+        {
+            img: movie5,
+            name: 'batman',
+            id: 5
+        }
     ]
    
  
