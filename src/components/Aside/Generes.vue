@@ -1,14 +1,8 @@
 <template>
-  <aside class="ml-auto md:flex md:flex-col rounded-xl lg:w-25% lg:mt-0 mt-10 w-full relative">
-                <coming-soon :data="data"/>
-                <old-moviess :oldMovies="oldMovies"/>
-                <tv-showss :tvShows="tvShows"/>
-                
-                
-                <article id="genere" class="border-my-color-pale-gray border-4 rounded-2xl p-3 mt-10 scroll-mt-16">
+  <article id="genere" class="border-my-color-pale-gray border-4 rounded-2xl p-3 mt-10 scroll-mt-16">
                     <div class="flex justify-between">
                         <h2 class="text-my-color-secodary-gray">Genere</h2>
-                        <ul class="flex gap-x-2">
+                        <ul class="flex gap-x-2 text-my-color-secodary-gray">
                             <li><a href="">Movies</a></li>
                             <li><a href="">Series</a></li>
                         </ul>
@@ -23,14 +17,10 @@
                         <button class="genere-btn">drama<i class="fa-regular fa-face-sad-cry text-3sm pl-1 "></i></button>
                     </div>
                 </article>
-            </aside>
 </template>
 
 <script setup>
-import comingSoon from './Aside/ComingSoon.vue'
-import oldMoviess  from './Aside/OldMovies.vue'
-import tvShowss  from './Aside/TvShows.vue'
-    defineProps(['data', 'oldMovies', 'tvShows'])
+
 </script>
 
 <style>

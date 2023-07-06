@@ -15,7 +15,8 @@ export default {
           'pale-gray': '#1f2226',
           'hover-gray': '#414043',
           'primary-gray': '#151515',
-          'dark-orange': '#663300'
+          'dark-orange': '#663300',
+          'secodary-gray': '#4d4d4d',
         }
       },
       height: {

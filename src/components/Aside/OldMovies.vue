@@ -1,7 +1,7 @@
 <template>
   <article class="border-my-color-pale-gray border-4 rounded-2xl p-3 mt-10">
                     <div class="w-full">
-                        <h2 class="text-my-color-secodary-gray text-center">Old but gold</h2>
+                        <h2 class="text-my-color-secodary-gray text-center text-yellow-400">Old but gold</h2>
                     </div>
                     <div class="grid gap-4 grid-cols-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-1 mt-4 ">
                         <div v-for="oldMovie in oldMovies" :key="oldMovie.id" class="relative mx-auto w-full cursor-pointer" aria-selected="true">

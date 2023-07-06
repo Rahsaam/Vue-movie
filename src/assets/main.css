@@ -15,4 +15,7 @@ body {
     .imdb-point {
         @apply text-2sm bg-my-color-hover-gray p-1 rounded-full border-2
     }
+    .genere-btn {
+        @apply text-2sm bg-transparent border border-yellow-400 p-2 rounded-lg text-yellow-400 whitespace-nowrap font-extrabold hover:bg-yellow-400 hover:text-black transition
+    }
 }

@@ -21,7 +21,7 @@
 
 <style scoped>
     .main-poster .background-image {
-    background-image: url("../assets/hero-bg.jpg");
+    background-image: url("../../assets/hero-bg.jpg");
     background-position: center;
     background-size: cover;
     overflow: hidden;
