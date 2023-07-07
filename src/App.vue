@@ -1,11 +1,15 @@
 <template>
   <div class="h-100 w-full bg-my-color-primary-gray">
+    
+      <navbar/>
+
     <main-page/>
   </div>
 </template>
 
 <script setup>
     import mainPage from './components/MoviePages/MainPage.vue'
+    import navbar from './components/dls/Navbar.vue'
 
     // movies data
     // import movie1 from './assets/movie-1.png';
