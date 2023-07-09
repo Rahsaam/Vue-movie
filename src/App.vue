@@ -8,8 +8,8 @@
 </template>
 
 <script setup>
-    import mainPage from './components/MoviePages/MainPage.vue'
-    import navbar from './components/dls/Navbar.vue'
+    import mainPage from '@/components/MoviePages/MainPage.vue'
+    import navbar from '@/components/dls/Navbar.vue'
 
     // movies data
     // import movie1 from './assets/movie-1.png';

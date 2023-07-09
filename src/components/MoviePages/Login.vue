@@ -42,6 +42,6 @@
 
 <style>
 .login-box {
-    background: url('../../assets/Movie-Wallpaper-HD-Free-download\ \(1\).jpg');
+    background: url('@/assets/Movie-Wallpaper-HD-Free-download\ \(1\).jpg');
 }
 </style>

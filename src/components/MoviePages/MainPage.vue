@@ -29,7 +29,7 @@
         :upComings="upComings"
         :oldMovies="oldMovies"
         :tvShows="tvShows"
-        :seriesContent="series"/>
+        :seriesNader="series"/>
       </div>
       <div class="text-white" v-else>
         <sppiner/>
@@ -39,13 +39,28 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import trendMovies from '../dls/TrendMovies.vue';
-import {API_IMAGE_BASE_URL, API_IMAGE_SIZE_MD} from '../ApiDetails/api-constant';
-import mainPoster from '../dls/MainPoster.vue'
-import sppiner from '../dls/Sppiner.vue'
-import middleNavbar from '../dls/MiddleNavbar.vue'
-import movieList from '../dls/MovieList.vue'
-import footerContent from '../dls/FooterContent.vue'
+import trendMovies from '@/components/dls/TrendMovies.vue';
+import {
+  API_IMAGE_BASE_URL,
+  API_IMAGE_SIZE_MD,
+  API_BASE_URL,
+  API_VERSION
+  } from '@/components/ApiDetails/api-constant';
+import {
+  TREND_MOVIES_URL,
+  MOVIES_URL,
+  GENRE_URL,
+  UPCOMING_MOVIES_URL,
+  OLD_MOVIES_URL,
+  TVSHOWS_URL,
+  SERIES_URL
+} from '@/components/ApiDetails/endPoints'
+import {client} from '@/components/utils/client'
+import mainPoster from '@/components/dls/MainPoster.vue'
+import sppiner from '@/components/dls/Sppiner.vue'
+import middleNavbar from '@/components/dls/MiddleNavbar.vue'
+import movieList from '@/components/dls/MovieList.vue'
+import footerContent from '@/components/dls/FooterContent.vue'
 
 // data arrays
 const popularMovies = ref([])
@@ -55,49 +70,18 @@ const oldMovies = ref([])
 const tvShows = ref([])
 const series = ref([])
 
-const options = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4YjZjMDBlZWVmYzdlZTk0OWFmNGU2MDcyNTU2ZjZhOCIsInN1YiI6IjY0YTJjZDFlOGUyMGM1MDEwZDRlMTc5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZkW2-Er08cN1FMrSp1vVZIwbMwJc0QIyWQY1WxJrx7s'
-  }
-};
-
 const fetchTrendMovies = async () => {
-  try {
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    const response = await fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options);
-    if (!response.ok) {
-      throw new Error('This URL does not exist');
-    }
-    const data = await response.json();
-    popularMovies.value = data.results;
-  } catch (err) {
-    console.error(err);
-  }
+    const response = await client(`${API_BASE_URL}${API_VERSION}${TREND_MOVIES_URL}?language=en-US`)
+    popularMovies.value = response.results;
 };
-
 
  const fetchMovies = async () => {
-  try {
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    const response = await fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options);
-    if (!response.ok) {
-      throw new Error('This URL does not exist');
-    }
-    const data = await response.json();
-    // mainMovies.value = data.results;
-
-    const genereResponse = await fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
-    const genereData = await
-     genereResponse.json()
-    
+    const data = await client(`${API_BASE_URL}${API_VERSION}${MOVIES_URL}?language=en-US`)
+    const genereData = await client(`${API_BASE_URL}${API_VERSION}${GENRE_URL}?language=en`)
     const genreMap = {};
     genereData.genres.forEach(genre => {
       genreMap[genre.id] = genre.name;
     });
-    
-
     // Assign genre names to each movie
     const moviesWithGenres = data.results.map(movie => {
       const genreNames = movie.genre_ids.map(genreId => genreMap[genreId]);
@@ -106,80 +90,31 @@ const fetchTrendMovies = async () => {
         genre_names: genreNames,
       };
     });
-    
-    mainMovies.value = moviesWithGenres;
-    
-  } catch (err) {
-    console.error(err);
-  }
+    mainMovies.value = moviesWithGenres; 
 };
-
 
 const fetchUpcomings = async () => {
-  try {
-    const response = await fetch('https://api.themoviedb.org/3/tv/popular?language=en-US&page=1', options)
-    if(!response.ok) {
-      throw new Error('This URL does not exist')
-    }
-    const data = await response.json();
+    const data = await client(`${API_BASE_URL}${API_VERSION}${UPCOMING_MOVIES_URL}?language=en-US&page=1`)
     upComings.value = data.results
-    // console.log(data);
-  } catch(err) {
-    console.log(err);
-  }
 };
 
-
 const fetchOldMovies = async () => {
-  try {
-    const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', options)
-    if(!response.ok) {
-      throw new Error('This URL does not exist')
-    }
-    const data = await response.json()
-    // console.log(data.results);
+    const data = await client(`${API_BASE_URL}${API_VERSION}${OLD_MOVIES_URL}?language=en-US&page=1`)
     oldMovies.value = data.results
-  } catch(err) {
-    console.log(err);
-  }
 }
-
 
 const fetchTvShows = async () => {
-  try {
-    const response = await fetch('https://api.themoviedb.org/3/trending/tv/day?language=en-US', options)
-    if(!response.ok) {
-      throw new Error('This URL does not exist')
-    }
-    const data = await response.json()
+    const data = await client(`${API_BASE_URL}${API_VERSION}${TVSHOWS_URL}?language=en-US`)
     tvShows.value = data.results
-    console.log(tvShows.value);
-  } catch(err) {
-    console.log(err);
-  }
 }
 
-
 const fetchSeries = async () => {
-  try {
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    const response = await fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US', options)
-    if (!response.ok) {
-      throw new Error('This URL does not exist');
-    }
-    const data = await response.json();
-    
-
-    const genereResponse = await fetch('https://api.themoviedb.org/3/genre/movie/list?language=en', options)
-    const genereData = await
-     genereResponse.json()
-    
+    const data = await client(`${API_BASE_URL}${API_VERSION}${SERIES_URL}?language=en-US`)
+    const genereData = await client(`${API_BASE_URL}${API_VERSION}${GENRE_URL}?language=en`)
     const genreMap = {};
     genereData.genres.forEach(genre => {
       genreMap[genre.id] = genre.name;
     });
-    
-
     // Assign genre names to each movie
     const moviesWithGenres = data.results.map(movie => {
       const genreNames = movie.genre_ids.map(genreId => genreMap[genreId]);
@@ -188,12 +123,7 @@ const fetchSeries = async () => {
         genre_names: genreNames,
       };
     });
-   console.log(moviesWithGenres);
-    series.value = moviesWithGenres;
-    
-  } catch (err) {
-    console.error(err);
-  }
+    series.value = moviesWithGenres; 
 };
 
 onMounted(() => {
@@ -206,7 +136,3 @@ onMounted(() => {
 });
 
 </script>
-
-<style>
-
-</style>

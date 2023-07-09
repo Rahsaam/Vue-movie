@@ -56,14 +56,10 @@
 </template>
 
 <script setup>
-import comingSoon from '../Aside/ComingSoon.vue'
-import oldMoviesContent  from '../Aside/OldMovies.vue'
-import tvShowss  from '../Aside/TvShows.vue'
-import generes from '../Aside/Generes.vue'
-import {API_IMAGE_BASE_URL, API_IMAGE_SIZE_MD} from '../ApiDetails/api-constant';
+import comingSoon from '@/components/Aside/ComingSoon.vue'
+import oldMoviesContent  from '@/components/Aside/OldMovies.vue'
+import tvShowss  from '@/components/Aside/TvShows.vue'
+import generes from '@/components/Aside/Generes.vue'
+import {API_IMAGE_BASE_URL, API_IMAGE_SIZE_MD} from '@/components/ApiDetails/api-constant';
     defineProps(['upComings', 'oldMovies', 'tvShows'])
 </script>
-
-<style>
-
-</style>

@@ -2,9 +2,9 @@
     <main class="container max-w-sm sm:max-w-2xl md:max-w-5xl lg:max-w-7xl mx-auto px-3 sm:p-0">
             <div class=" mt-14 flex items-center lg:w-70% w-full justify-between text-white">
                     <ul class="flex gap-x-3">
-                    <li id="movies" class="text-lg font-bold scroll-mt-16"><a href="" :class="{activeTab: activeTab === 'movies'}" @click.prevent="activeTab = 'movies', updateData = 'movies'" class="hover:font-extrabold transition">Movies</a></li>
+                    <li id="movies" class="text-lg font-bold scroll-mt-16"><a href="" :class="{activeTab: activeTab === 'movies'}" @click.prevent="activeTab = 'movies'" class="hover:font-extrabold transition">Movies</a></li>
                     <div class="border"></div>
-                    <li id="series" class="text-lg font-bold scroll-mt-16"><a href="" :class="{activeTab: activeTab === 'series'}" @click.prevent="activeTab = 'series', updateData = 'series'" class="hover:font-extrabold transition">Series</a></li>
+                    <li id="series" class="text-lg font-bold scroll-mt-16"><a href="" :class="{activeTab: activeTab === 'series'}" @click.prevent="activeTab = 'series'" class="hover:font-extrabold transition">Series</a></li>
                 </ul>
                 <ul class="flex text-my-color-secodary-gray gap-x-3">
                     <li><a href="" class="hover:text-my-color-dark-orange transition">All</a></li>
@@ -13,7 +13,7 @@
                 </ul>
             </div>
             <main class="flex lg:flex-row flex-col ">
-                <section v-if="updateData === 'movies'" class="lg:w-70% w-full grid grid-cols-2 items-end justify-center lg:grid-cols-1 md:grid-cols-5 sm:grid-cols-4 gap-x-2 lg:gap-x-0">
+                <section v-if="activeTab === 'movies'" class="lg:w-70% w-full grid grid-cols-2 items-end justify-center lg:grid-cols-1 md:grid-cols-5 sm:grid-cols-4 gap-x-2 lg:gap-x-0">
                     <movies 
                     v-for="mainMovie in mainMovies" 
                     :key="mainMovie.id"
@@ -29,15 +29,15 @@
                     :genereNames="mainMovie.genre_names"/>
                 </section>
                 <section v-else class="lg:w-70% w-full grid grid-cols-2 items-end justify-center lg:grid-cols-1 md:grid-cols-5 sm:grid-cols-4 gap-x-2 lg:gap-x-0">
-                    <seriess
-                    v-for="serial in seriesContent"
+                    <series-content
+                    v-for="serial in seriesNader"
                     :key="serial.id"
                     :mediaType="serial.media_type"
                     :language="serial.original_language"
-                    :title="serial.original_title"
+                    :name="serial.original_name"
                     :overview="serial.overview"
                     :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_LG}${serial.poster_path}`"
-                    :release-date="serial.release_date"
+                    :release-date="serial.first_air_date"
                     :imdb="serial.vote_average"
                     :rating="serial.vote_count"
                     casts="Jason statham, Adem sandler, Paul walker, Jim carry, Adam pally, Idris elba, Tika sumpter, Ben schwartz, James marsden"
@@ -55,18 +55,15 @@
 </template>
 
 <script setup>
-    import asideBar from './AsideBar.vue'
-    import movies   from '../MainMovies/Movies.vue'
-    import seriess  from '../MainMovies/SeriesNader.vue'
+    import asideBar from '@/components/dls/AsideBar.vue'
+    import movies   from '@/components/MainMovies/Movies.vue'
+    import seriesContent  from '@/components/MainMovies/SeriesNader.vue'
     
     import {API_IMAGE_BASE_URL, API_IMAGE_SIZE_LG} from '../ApiDetails/api-constant';
 import {ref, watch } from 'vue';
-    defineProps(['mainMovies', 'upComings', 'oldMovies', 'tvShows', 'seriesContent'])
+    defineProps(['mainMovies', 'upComings', 'oldMovies', 'tvShows', 'seriesNader'])
 
     const activeTab = ref('movies')
-    const updateData = ref('movies')
-    const moviesData = ref([])
-    const seriesData = ref([])
 
 
     const options = {
@@ -77,19 +74,15 @@ import {ref, watch } from 'vue';
         }
     };
 
-    // watch(() => updateData.value
-    // ,
-    // (newValue) => {
-    //     if (newValue === 'movies') {
-    //         fetch('https://api.themoviedb.org/3/trending/movie/day?language=en-US', options)
-    //             ...
-    //     } else {
-    //         fetch('https://api.themoviedb.org/3/trending/all/day?language=en-US', options)
-    //             ...
-    //     }
-    // }
-    // , 
-    // {immediate: true})
+    watch(
+        () => activeTab
+        ,
+        (newValue) => {
+        const url = newValue === 'movies' ? 'movie' : 'tv';
+        fetch(`https://api.themoviedb.org/3/trending/${url}/day?language=en-US`, options)
+        }
+        , 
+        {immediate: true})
     
 </script>
 

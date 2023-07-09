@@ -49,7 +49,3 @@ import { ref } from "vue";
         showMenu.value = !showMenu.value
     }
 </script>
-
-<style>
-
-</style>

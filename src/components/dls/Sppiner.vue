@@ -2,10 +2,6 @@
     <div class="spin"></div>
 </template>
   
-  <script setup>
- 
-  </script>
-  
   <style>
   .spin {
       border: 3px solid transparent;

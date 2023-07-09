@@ -19,10 +19,3 @@
                 </article>
 </template>
 
-<script setup>
-
-</script>
-
-<style>
-
-</style>

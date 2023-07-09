@@ -2,10 +2,10 @@
     <div class="text-white relative" aria-selected="true">
                     <div class="relative min-w-[150px] cursor-pointer">
                         <div class="absolute flex items-center justify-between left-2 right-2 top-1 z-20">
-                            <img src="../../assets/IMDB_Logo.png" class="w-10 h-4" alt="">
+                            <img src="../../assets/IMDB_Logo.png" class="w-10 h-4" alt="imdb-img">
                             <span class="imdb-point">{{imdb}}</span>
                         </div>
-                        <img :src="src" alt="" class="w-full h-full rounded-md">
+                        <img :src="src" :alt="title" class="w-full h-full rounded-md">
                         <div class="text-overlay text-center absolute inset-0 flex flex-col justify-center items-center  w-full h-full overflow-hidden bg-black bg-opacity-70 p-6 rounded-md backdrop-blur-lg opacity-0 duration-300 text-xl hover:opacity-90">
                             <span class="text-sm md:text-md">{{year}}</span>
                             <div class="like-box text-sm md:text-md">
@@ -31,7 +31,3 @@ import { computed } from "vue"
 
     const year = computed(() => new Date(props.releaseDate).getFullYear())
 </script>
-
-<style>
-
-</style>
