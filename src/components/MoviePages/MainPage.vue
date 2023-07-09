@@ -19,7 +19,8 @@
                     :imdb="movie.vote_average"/> 
                 </div>
                 <div v-else>
-                    <sppiner/>
+                    <sppiner v-if="loading"/>
+                    <p v-else>{{ error }}</p>
                   </div>
             </div>
   </section>
@@ -32,7 +33,8 @@
         :seriesNader="series"/>
       </div>
       <div class="text-white" v-else>
-        <sppiner/>
+        <sppiner v-if="loading"/>
+        <p v-else>{{ error }}</p>
       </div>
       <footer-content/>
 </template>
@@ -69,6 +71,8 @@ const upComings = ref([])
 const oldMovies = ref([])
 const tvShows = ref([])
 const series = ref([])
+const loading = ref(true)
+const error = ref(null)
 
 const fetchTrendMovies = async () => {
     const response = await client(`${API_BASE_URL}${API_VERSION}${TREND_MOVIES_URL}?language=en-US`)
@@ -76,6 +80,7 @@ const fetchTrendMovies = async () => {
 };
 
  const fetchMovies = async () => {
+  try {
     const data = await client(`${API_BASE_URL}${API_VERSION}${MOVIES_URL}?language=en-US`)
     const genereData = await client(`${API_BASE_URL}${API_VERSION}${GENRE_URL}?language=en`)
     const genreMap = {};
@@ -91,6 +96,11 @@ const fetchTrendMovies = async () => {
       };
     });
     mainMovies.value = moviesWithGenres; 
+  } catch(err) {
+    console.log(err);
+    loading.value = false
+    error.value = "Failed to load data"
+  }
 };
 
 const fetchUpcomings = async () => {
