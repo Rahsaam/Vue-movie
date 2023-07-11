@@ -1,16 +1,15 @@
 <template>
-    
-        <article class="flex lg:flex-row flex-col lg:mt-14 mt-4">
+  <article class="flex lg:flex-row flex-col lg:mt-14 mt-4">
             <div class="relative lg:w-72 text-white cursor-pointer">
                     <i class="fas fa-bookmark absolute top-2 left-2 z-20"></i>
-                <img :src="src" class="w-full rounded-2xl" :alt="title">
+                <img :src="src" class="w-full rounded-2xl" :alt="name">
                 <div class=" text-overlay text-center absolute inset-0 flex flex-col justify-center items-center  lg:w-full h-full   overflow-hidden bg-black bg-opacity-70 p-6 rounded-xl backdrop-blur-lg opacity-0 duration-300 text-xl hover:opacity-90">
                     <i class="fas fa-play"></i>          
                 </div>
             </div>
             <div class="lg:ml-3 p-2 w-full ">
                 <div class="flex justify-between w-full font-bold">
-                    <h2 class="text-white">{{ title }}</h2>
+                    <h2 class="text-white">{{ name }}</h2>
                     <span class="hidden lg:block text-white"><span class="text-yellow-500 font-bold text-2xl">{{imdb}}</span>/10</span>
                 </div>
                 <div class="flex mt-4">
@@ -40,18 +39,18 @@
 <script setup>
 import { computed } from "vue"
 
-   const props = defineProps({
-    mediaType: String,
-    language: String,
-    title: String,
-    overview: String,
-    src: String,
-    releaseDate: String,
-    imdb: Number,
-    casts: String,
-    rating: Number,
-    genereNames: Array
-   })
+const props = defineProps({
+ mediaType: String,
+ language: String,
+ name: String,
+ overview: String,
+ src: String,
+ releaseDate: String,
+ imdb: Number,
+ casts: String,
+ rating: Number,
+ genereNames: Array
+})
 
-   const year = computed(() => new Date(props.releaseDate).getFullYear())
+const year = computed(() => new Date(props.releaseDate).getFullYear())
 </script>
