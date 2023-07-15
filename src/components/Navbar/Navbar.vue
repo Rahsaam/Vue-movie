@@ -15,7 +15,7 @@
             </div>
             <ul class="hidden md:flex space-x-7 text-white" aria-haspopup="menu" aria-expanded="false" aria-controls="menuContent">
                 <li class="hover:text-slate-300" aria-selected="true"><a  href="logout.html">Logout</a></li>
-                <li class="hover:text-slate-300" aria-selected="true"><a  href="login.html">Login</a></li>
+                <nav-link text="Login" to="/login"/>
                 <nav-link text="Watchlist" to="/"/>
                 <nav-link text="Profile" to="/profile"/>
                 <li class="hover:text-slate-300" aria-selected="true"><a  href="index.html">Movie page</a></li>

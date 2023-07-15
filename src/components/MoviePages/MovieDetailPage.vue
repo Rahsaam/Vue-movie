@@ -52,7 +52,7 @@
 import {ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import {client} from '@/components/utils/client.js'
-import sppiner from '@/components/dls/Sppiner.vue'
+
 import {
   API_BASE_URL,
   API_VERSION
@@ -73,8 +73,7 @@ const casts = ref([])
 const getDirectorName = ref('')
 const getTwoActors = ref([])
 const route = useRoute()
-const loading = ref(true)
-const error = ref('loading data failed')
+
 
 const getMovieDetail = async (movie_id) => {
   const data = await client(`${API_BASE_URL}${API_VERSION}/movie/${movie_id}?language=en-US`)
