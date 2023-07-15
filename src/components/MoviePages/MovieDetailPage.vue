@@ -62,7 +62,7 @@ import DetailImage from "@/components/MovieDetailComponents/DetailImage.vue";
 import playBtnBox from '@/components/MovieDetailComponents/PlayBtnBox.vue'
 import directorBox from '@/components/MovieDetailComponents/DirectorBox.vue'
 import lengthBox from '@/components/MovieDetailComponents/LengthBox.vue'
-import releaseBox from '@/components/MovieDetailComponents/ReleaseBox.vue'
+import releaseBox from '@/components/MovieDetailComponents/releaseBox.vue'
 import overviewBox from "@/components/MovieDetailComponents/overviewBox.vue";
 import moreInfoBox from "@/components/MovieDetailComponents/MoreInfoBox.vue";
 import actorsBox from "@/components/MovieDetailComponents/ActorsBox.vue";
