@@ -1,4 +1,5 @@
 <template>
+  <navbar/>
   <main-poster/>
   <middleNavbar/>
   <div class="md:h-32 h-16"></div>
@@ -51,7 +52,8 @@ import {
 import {
   TREND_MOVIES_URL,
   MOVIES_URL,
-  GENRE_URL,
+  GENRE_MOVIES_URL,
+  GENRE_SERIES_URL,
   UPCOMING_MOVIES_URL,
   OLD_MOVIES_URL,
   TVSHOWS_URL,
@@ -63,6 +65,7 @@ import sppiner from '@/components/dls/Sppiner.vue'
 import middleNavbar from '@/components/dls/MiddleNavbar.vue'
 import movieList from '@/components/dls/MovieList.vue'
 import footerContent from '@/components/dls/FooterContent.vue'
+import Navbar from '@/components/Navbar/Navbar.vue'
 
 // data arrays
 const popularMovies = ref([])
@@ -82,7 +85,7 @@ const fetchTrendMovies = async () => {
  const fetchMovies = async () => {
   try {
     const data = await client(`${API_BASE_URL}${API_VERSION}${MOVIES_URL}?language=en-US`)
-    const genereData = await client(`${API_BASE_URL}${API_VERSION}${GENRE_URL}?language=en`)
+    const genereData = await client(`${API_BASE_URL}${API_VERSION}${GENRE_MOVIES_URL}?language=en`)
     const genreMap = {};
     genereData.genres.forEach(genre => {
       genreMap[genre.id] = genre.name;
@@ -120,7 +123,7 @@ const fetchTvShows = async () => {
 
 const fetchSeries = async () => {
     const data = await client(`${API_BASE_URL}${API_VERSION}${SERIES_URL}?language=en-US`)
-    const genereData = await client(`${API_BASE_URL}${API_VERSION}${GENRE_URL}?language=en`)
+    const genereData = await client(`${API_BASE_URL}${API_VERSION}${GENRE_SERIES_URL}?language=en`)
     const genreMap = {};
     genereData.genres.forEach(genre => {
       genreMap[genre.id] = genre.name;
@@ -136,13 +139,16 @@ const fetchSeries = async () => {
     series.value = moviesWithGenres; 
 };
 
-onMounted(() => {
+
+
+onMounted( async () => {
   fetchTrendMovies();
   fetchMovies();
   fetchUpcomings();
   fetchOldMovies();
   fetchTvShows();
-  fetchSeries()
+  fetchSeries();
+  
 });
 
 </script>

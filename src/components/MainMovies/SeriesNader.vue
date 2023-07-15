@@ -46,11 +46,12 @@ const props = defineProps({
  overview: String,
  src: String,
  releaseDate: String,
- imdb: Number,
+ imdb: String,
  casts: String,
  rating: Number,
  genereNames: Array
 })
+console.log(props.genereNames);
 
 const year = computed(() => new Date(props.releaseDate).getFullYear())
 </script>

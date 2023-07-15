@@ -16,7 +16,7 @@ import { computed } from "vue"
    const props = defineProps({
         title: String,
         src: String,
-        release: Number
+        release: String
     })
 
     const year = computed(() => new Date(props.release).getFullYear())

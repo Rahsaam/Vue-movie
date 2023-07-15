@@ -1,5 +1,5 @@
 <template>
-  <aside class="ml-auto md:flex md:flex-col rounded-xl lg:w-25% lg:mt-0 mt-10 w-full relative">
+  <aside class="ml-auto md:flex md:flex-col rounded-xl lg:w-80% lg:mt-0 mt-10 w-full relative">
     <article class="border-my-color-pale-gray border-4 rounded-2xl p-3">
         <div class="flex justify-between">
             <h2 class="text-yellow-400">Comings</h2>
