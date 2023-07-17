@@ -31,8 +31,9 @@
                 </section>
                 <section v-else class="lg:w-70% w-full grid grid-cols-2 items-end justify-center lg:grid-cols-1 md:grid-cols-5 sm:grid-cols-4 gap-x-2 lg:gap-x-0">
                     <series-content
-                    v-for="serial in seriesNader"
+                    v-for="serial in series"
                     :key="serial.id"
+                    :id="serial.id"
                     :mediaType="serial.media_type"
                     :language="serial.original_language"
                     :name="serial.original_name"
@@ -58,11 +59,11 @@
 <script setup>
     import asideBar from '@/components/dls/AsideBar.vue'
     import movies   from '@/components/MainMovies/Movies.vue'
-    import seriesContent  from '@/components/MainMovies/SeriesNader.vue'
+    import seriesContent  from '@/components/MainMovies/Series.vue'
     
     import {API_IMAGE_BASE_URL, API_IMAGE_SIZE_LG} from '../ApiDetails/api-constant';
 import {ref, watch } from 'vue';
-    defineProps(['mainMovies', 'upComings', 'oldMovies', 'tvShows', 'seriesNader'])
+    defineProps(['mainMovies', 'upComings', 'oldMovies', 'tvShows', 'series'])
 
     const activeTab = ref('movies')
 

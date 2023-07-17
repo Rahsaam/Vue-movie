@@ -1,6 +1,10 @@
 <template>
   <navbar/>
-  <main-poster/>
+  <main-poster 
+  :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_XLG}${movieActive.backdrop_path}`"
+  :title="movieActive.original_title"
+  />
+
   <middleNavbar/>
   <div class="md:h-32 h-16"></div>
   <section id="trend" class=" mx-auto mt-10 container max-w-sm sm:max-w-2xl md:max-w-5xl lg:max-w-7xl scroll-mt-16">
@@ -10,6 +14,7 @@
             </div>
             <div class="w-full overflow-x-scroll whitespace-no-wrap mx-auto mt-5">
                 <div class="flex flex-row space-x-3 mx-auto [&::-webkit-scrollbar]:hidden" v-if="popularMovies.length">
+                  
                     <trend-movies 
                     v-for="movie in popularMovies" 
                     :key="movie.id"
@@ -17,7 +22,9 @@
                     :release-date="movie.release_date"
                     :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_MD}${movie.poster_path}`"
                     :title="movie.original_title"
-                    :imdb="movie.vote_average"/> 
+                    :imdb="movie.vote_average"
+                    /> 
+                 
                 </div>
                 <div v-else>
                     <sppiner v-if="loading"/>
@@ -31,7 +38,7 @@
         :upComings="upComings"
         :oldMovies="oldMovies"
         :tvShows="tvShows"
-        :seriesNader="series"/>
+        :series="series"/>
       </div>
       <div class="text-white" v-else>
         <sppiner v-if="loading"/>
@@ -41,11 +48,12 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 import trendMovies from '@/components/dls/TrendMovies.vue';
 import {
   API_IMAGE_BASE_URL,
   API_IMAGE_SIZE_MD,
+  API_IMAGE_SIZE_XLG,
   API_BASE_URL,
   API_VERSION
   } from '@/components/ApiDetails/api-constant';
@@ -76,10 +84,18 @@ const tvShows = ref([])
 const series = ref([])
 const loading = ref(true)
 const error = ref(null)
+const movieActive = ref('')
 
+let counter = 0
+
+// const movieActiveStyle = computed(() => ({
+//   border: isMovieActive.value ? '2px solid yellow' : 'none'
+// }))
+// const isMovieActive = computed(() => movieActive.value === popularMovies.value[(counter++) % 9])
 const fetchTrendMovies = async () => {
     const response = await client(`${API_BASE_URL}${API_VERSION}${TREND_MOVIES_URL}?language=en-US`)
-    popularMovies.value = response.results;
+    popularMovies.value = response.results.slice(0, 8);
+    movieActive.value = popularMovies.value[counter]
 };
 
  const fetchMovies = async () => {
@@ -137,18 +153,29 @@ const fetchSeries = async () => {
       };
     });
     series.value = moviesWithGenres; 
+    
 };
 
 
-
-onMounted( async () => {
+let interval;
+onMounted(() => {
   fetchTrendMovies();
+  interval = setInterval(function() {
+        // updating active movei
+        movieActive.value = popularMovies.value[(counter++) % 9];
+    }, 4000);
   fetchMovies();
   fetchUpcomings();
   fetchOldMovies();
   fetchTvShows();
   fetchSeries();
-  
 });
+onUnmounted(() => {
+  clearInterval(interval)
+})
 
 </script>
+
+<style scoped>
+ 
+</style>

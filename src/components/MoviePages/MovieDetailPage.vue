@@ -58,6 +58,7 @@ import {
   API_VERSION
   } from '@/components/ApiDetails/api-constant';
   import { API_IMAGE_BASE_URL, API_IMAGE_SIZE_XLG, API_IMAGE_SIZE_MD } from '@/components/ApiDetails/api-constant';
+import { useFetch } from "@/composables/useFetch";
 import DetailImage from "@/components/MovieDetailComponents/DetailImage.vue";
 import playBtnBox from '@/components/MovieDetailComponents/PlayBtnBox.vue'
 import directorBox from '@/components/MovieDetailComponents/DirectorBox.vue'
@@ -73,10 +74,11 @@ const casts = ref([])
 const getDirectorName = ref('')
 const getTwoActors = ref([])
 const route = useRoute()
-
+const {doFetch, data, loading, error} = useFetch()
 
 const getMovieDetail = async (movie_id) => {
   const data = await client(`${API_BASE_URL}${API_VERSION}/movie/${movie_id}?language=en-US`)
+  
   moviesDetail.value = data
   
 

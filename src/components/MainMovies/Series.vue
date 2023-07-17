@@ -2,10 +2,12 @@
   <article class="flex lg:flex-row flex-col lg:mt-14 mt-4">
             <div class="relative lg:w-72 text-white cursor-pointer">
                     <i class="fas fa-bookmark absolute top-2 left-2 z-20"></i>
-                <img :src="src" class="w-full rounded-2xl" :alt="name">
-                <div class=" text-overlay text-center absolute inset-0 flex flex-col justify-center items-center  lg:w-full h-full   overflow-hidden bg-black bg-opacity-70 p-6 rounded-xl backdrop-blur-lg opacity-0 duration-300 text-xl hover:opacity-90">
-                    <i class="fas fa-play"></i>          
-                </div>
+                <router-link :to="{name: 'serialDetail', params: {id}}">
+                    <img :src="src" class="w-full rounded-2xl" :alt="name">
+                    <div class=" text-overlay text-center absolute inset-0 flex flex-col justify-center items-center  lg:w-full h-full   overflow-hidden bg-black bg-opacity-70 p-6 rounded-xl backdrop-blur-lg opacity-0 duration-300 text-xl hover:opacity-90">
+                        <i class="fas fa-play"></i>          
+                    </div>
+                </router-link>
             </div>
             <div class="lg:ml-3 p-2 w-full ">
                 <div class="flex justify-between w-full font-bold">
@@ -49,7 +51,8 @@ const props = defineProps({
  imdb: String,
  casts: String,
  rating: Number,
- genereNames: Array
+ genereNames: Array,
+ id: Number
 })
 console.log(props.genereNames);
 

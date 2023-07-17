@@ -5,7 +5,7 @@
                             <img src="../../assets/IMDB_Logo.png" class="w-10 h-4" alt="imdb-img">
                             <span class="imdb-point">{{imdb}}</span>
                         </div>
-                        <img :src="src" :alt="title" class="w-full h-full rounded-md">
+                        <img :style="movieActiveStyle" :src="src" :alt="title" class="w-full h-full rounded-md">
                         <div class="text-overlay text-center absolute inset-0 flex flex-col justify-center items-center  w-full h-full overflow-hidden bg-black bg-opacity-70 p-6 rounded-md backdrop-blur-lg opacity-0 duration-300 text-xl hover:opacity-90">
                             <span class="text-sm md:text-md">{{year}}</span>
                             <div class="like-box text-sm md:text-md">
@@ -26,8 +26,15 @@ import { computed } from "vue"
         src: String,
         title: String,
         releaseDate: String ,
-        imdb: Number
+        imdb: Number,
+        movieActiveStyle: Object
     })
 
     const year = computed(() => new Date(props.releaseDate).getFullYear())
 </script>
+
+<style scoped>
+.activeImage {
+  border: 1px solid rgb(250 204 21);
+}
+</style>

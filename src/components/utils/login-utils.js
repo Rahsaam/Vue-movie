@@ -44,9 +44,9 @@ const options = {
       
       const response = await fetch(`${API_BASE_URL}${API_VERSION}${VALIDATE_LOGIN_URL}`, options)
       const data = await response.json()
-        
+        console.log('validate');
         if(!data.success) {
-                throw new Error('Authorizing the request token failed.')
+                throw new Error(`validating login failed : ${data.status_message}`);
         }     
 }
 
@@ -63,8 +63,9 @@ async function createSession(requestToken){
               
              const response = await fetch(`${API_BASE_URL}${API_VERSION}${CREATE_SESSION_URL}`, options)
                 const data = await response.json()
+                console.log('create session');
                 if(!data.success) {
-                        throw new Error('creating session failed')
+                        throw new Error(`create session id : ${data.status_message}`);
                 }
                 sessionStorage.setItem('session_id', data.session_id)
 }
@@ -76,20 +77,21 @@ async function userAccount() {
         if(!sessionId) {
                 throw new Error('there is no session id')
         }
+        
         const params = new URLSearchParams()
         params.append('session_id', sessionId)
-        const url = fetch(`${API_BASE_URL}${API_VERSION}${ACCOUNT_URL}?${params}`)
+        const url = `${API_BASE_URL}${API_VERSION}${ACCOUNT_URL}?${params}`
         const options = {
-                method: 'GET',
                 headers: {
                   accept: 'application/json',
-                  Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4YjZjMDBlZWVmYzdlZTk0OWFmNGU2MDcyNTU2ZjZhOCIsInN1YiI6IjY0YTJjZDFlOGUyMGM1MDEwZDRlMTc5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZkW2-Er08cN1FMrSp1vVZIwbMwJc0QIyWQY1WxJrx7s'
+                  Authorization: `Bearer ${API_READ_ACCESS_TOKEN}`
                 }
-              };
+              }
         const response = await fetch(url, options)
         const data = await response.json()
+        console.log('getting user');
         if (!data.id) {
-            throw new Error('Getting user info failed.')
+                throw new Error(`getting user info failed : ${data.status_message}`);
         }
         sessionStorage.setItem('user_id', data.id)
         return data

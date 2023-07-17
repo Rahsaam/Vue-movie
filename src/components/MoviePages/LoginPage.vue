@@ -30,7 +30,11 @@
                     <button class="btn">login</button>
                 </div>
                 <div class="mt-8">
-                    <span class="text-white">if you do not have an account <a href="signUp.html" class="underline">sign up</a> now</span>
+                    <span class="text-white">if you do not have an account <a
+          href="https://www.themoviedb.org/signup"
+          class="underline"
+          >Sign Up</a
+        > now</span>
                 </div>
             </form>
         </div>
@@ -38,13 +42,26 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import {ref } from "vue";
 import { login } from "@/components/utils/login-utils";
+import { useRouter } from "vue-router";
+
+
+
 const username = ref('')
 const password = ref('')
- function sigin() {
-     login(username.value, password.value)
+const router = useRouter()
+ async function sigin() {
+    try {
+     await login(username.value, password.value)
+     .then(() => {
+      router.replace("/");
+    })
+} catch(error) {
+      console.error("Login failed:", error);
+    };
 }
+
 </script>
 
 <style>
