@@ -11,8 +11,8 @@
             <div class="absolute sm:grid sm:grid-cols-2 gap-2 sm:-bottom-60 max-w-7xl mx-auto px-5 md:flex md:-bottom-16 md:gap-x-3 left-0 right-0 justify-around w-full"> 
                 <playBtnBox/>
                 <director-box :directorName="getDirectorName"/>
-                <lengthBox :length="seriesDetail.runtime"/>
-                <releaseBox :year="seriesDetail.release_date"/>     
+                <lengthBoxSerial :length="seriesDetail.number_of_seasons"/>
+                <releaseBox :year="seriesDetail.first_air_date"/>     
             </div>
 
     
@@ -58,7 +58,7 @@ import {
 import DetailImage from "@/components/MovieDetailComponents/DetailImage.vue";
 import playBtnBox from '@/components/MovieDetailComponents/PlayBtnBox.vue'
 import directorBox from '@/components/MovieDetailComponents/DirectorBox.vue'
-import lengthBox from '@/components/MovieDetailComponents/LengthBox.vue'
+import lengthBoxSerial from '@/components/MovieDetailComponents/LengthBoxSerial.vue'
 import releaseBox from '@/components/MovieDetailComponents/releaseBox.vue'
 import overviewBox from "@/components/MovieDetailComponents/OverviewBox.vue";
 import moreInfoBox from "@/components/MovieDetailComponents/MoreInfoBox.vue";
@@ -84,10 +84,10 @@ const getCrewsAndCastsData = async (series_id) => {
     crewsAndCasts.value = data
     const crewsArr = data.crew
     const castsArr = data.cast
+    console.log(crewsArr);
     casts.value = castsArr
-    console.log(casts);
     crewsArr.forEach((crew) => {
-  if (crew.job === 'Director') {
+  if (crew.job === 'Series Director') {
     let directorName = crew.name;
     getDirectorName.value = directorName
   }

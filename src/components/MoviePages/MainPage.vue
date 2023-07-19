@@ -153,7 +153,7 @@ const fetchSeries = async () => {
       };
     });
     series.value = moviesWithGenres; 
-    
+    console.log(series.value);
 };
 
 

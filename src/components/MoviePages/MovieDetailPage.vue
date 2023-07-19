@@ -1,19 +1,24 @@
 <template>
-
-  <section class="relative h-[400px] w-full">
-    
+  <div v-if="loading" class="mt-40">
+    <sppiner/>
+  </div>
+  <div v-else-if="error">
+    <p class="text-white text-5xl text-center">oops fetch data failed...</p>
+  </div>
+  <div v-else>
+      <section class="relative h-[400px] w-full">
             <DetailImage 
-            :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_XLG}${moviesDetail.poster_path}`"
-            :genres="moviesDetail.genres"
-            :title="moviesDetail.title"
+            :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_XLG}${data.poster_path}`"
+            :genres="data.genres"
+            :title="data.title"
             :actorsName="getTwoActors"/>
         
                     <!-- boxes -->
                     <div class="absolute sm:grid sm:grid-cols-2 gap-2 sm:-bottom-60 max-w-7xl mx-auto px-5 md:flex md:-bottom-16 md:gap-x-3 left-0 right-0 justify-around w-full"> 
                         <playBtnBox/>
                         <director-box :directorName="getDirectorName"/>
-                        <lengthBox :length="moviesDetail.runtime"/>
-                        <releaseBox :year="moviesDetail.release_date"/>     
+                        <lengthBox :length="data.runtime"/>
+                        <releaseBox :year="data.release_date"/>     
                     </div>
         
             
@@ -23,11 +28,11 @@
                 <!-- description -->
                 <main class="w-full max-w-7xl mx-auto px-5">
                     <div class="flex justify-between">
-                        <overviewBox :overview="moviesDetail.overview"/>
+                        <overviewBox :overview="data.overview"/>
                         <moreInfoBox 
-                        :imdb="moviesDetail.vote_average.toFixed(1)"
-                        :budget="moviesDetail.budget"
-                        :likes="moviesDetail.vote_count"/>
+                        :imdb="data.vote_average.toFixed(1)"
+                        :budget="data.budget"
+                        :likes="data.vote_count"/>
                     </div>
                     
                     <article class="mt-14 w-full">
@@ -44,7 +49,7 @@
                     
                     
                 </main> 
-           
+      </div>
             
 </template>
 
@@ -67,8 +72,9 @@ import releaseBox from '@/components/MovieDetailComponents/releaseBox.vue'
 import overviewBox from "@/components/MovieDetailComponents/OverviewBox.vue";
 import moreInfoBox from "@/components/MovieDetailComponents/MoreInfoBox.vue";
 import actorsBox from "@/components/MovieDetailComponents/ActorsBox.vue";
+import Sppiner from "@/components/dls/Sppiner.vue";
 
-const moviesDetail = ref([])
+// const moviesDetail = ref([])
 const crewsAndCasts = ref([])
 const casts = ref([])
 const getDirectorName = ref('')
@@ -76,13 +82,13 @@ const getTwoActors = ref([])
 const route = useRoute()
 const {doFetch, data, loading, error} = useFetch()
 
-const getMovieDetail = async (movie_id) => {
-  const data = await client(`${API_BASE_URL}${API_VERSION}/movie/${movie_id}?language=en-US`)
+// const getMovieDetail = async (movie_id) => {
+//   const data = await client(`${API_BASE_URL}${API_VERSION}/movie/${movie_id}?language=en-US`)
   
-  moviesDetail.value = data
+//   moviesDetail.value = data
   
 
-}
+// }
 const getCrewsAndCastsData = async (movie_id) => {
     const data = await client(`${API_BASE_URL}${API_VERSION}/movie/${movie_id}/credits?language=en-US`)
     crewsAndCasts.value = data
@@ -103,7 +109,7 @@ const getCrewsAndCastsData = async (movie_id) => {
   watch(
     () => route.params.id,
     (newValue) => {
-      getMovieDetail(newValue)
+      doFetch(`${API_BASE_URL}${API_VERSION}/movie/${newValue}?language=en-US`)
       getCrewsAndCastsData(newValue)
     },
     {
