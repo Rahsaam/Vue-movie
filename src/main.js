@@ -12,11 +12,13 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 /* import specific icons */
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { router } from './router'
+import useAuth from './composables/useAuth'
 
 /* add icons to the library */
 library.add(faUserSecret)
 
 const app = createApp(App)
 app.use(router)
+useAuth(app)
 app.component('font-awesome-icon', FontAwesomeIcon)
 app.mount('#app')

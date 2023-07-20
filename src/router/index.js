@@ -6,3 +6,12 @@ export const router = createRouter({
     routes
     
 })
+
+router.beforeEach((to, from, next) => {
+    const user = sessionStorage.getItem('user_id')
+    if (to.matched.some(record => record.meta.requiresAuth)&&!user)
+      return next({name:'login'})
+    if(to.name === 'login' && user)
+      return next({name:'home'})
+    next();
+  });

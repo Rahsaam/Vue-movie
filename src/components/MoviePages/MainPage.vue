@@ -48,7 +48,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, onUnmounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import trendMovies from '@/components/dls/TrendMovies.vue';
 import {
   API_IMAGE_BASE_URL,
@@ -74,6 +74,7 @@ import middleNavbar from '@/components/dls/MiddleNavbar.vue'
 import movieList from '@/components/dls/MovieList.vue'
 import footerContent from '@/components/dls/FooterContent.vue'
 import Navbar from '@/components/Navbar/Navbar.vue'
+// import useFetch from '@/composables/useFetch.js'
 
 // data arrays
 const popularMovies = ref([])
@@ -85,13 +86,10 @@ const series = ref([])
 const loading = ref(true)
 const error = ref(null)
 const movieActive = ref('')
+// const {doFetch, data, error, loading} = useFetch()
 
 let counter = 0
 
-// const movieActiveStyle = computed(() => ({
-//   border: isMovieActive.value ? '2px solid yellow' : 'none'
-// }))
-// const isMovieActive = computed(() => movieActive.value === popularMovies.value[(counter++) % 9])
 const fetchTrendMovies = async () => {
     const response = await client(`${API_BASE_URL}${API_VERSION}${TREND_MOVIES_URL}?language=en-US`)
     popularMovies.value = response.results.slice(0, 8);
@@ -99,27 +97,8 @@ const fetchTrendMovies = async () => {
 };
 
  const fetchMovies = async () => {
-  try {
     const data = await client(`${API_BASE_URL}${API_VERSION}${MOVIES_URL}?language=en-US`)
-    const genereData = await client(`${API_BASE_URL}${API_VERSION}${GENRE_MOVIES_URL}?language=en`)
-    const genreMap = {};
-    genereData.genres.forEach(genre => {
-      genreMap[genre.id] = genre.name;
-    });
-    // Assign genre names to each movie
-    const moviesWithGenres = data.results.map(movie => {
-      const genreNames = movie.genre_ids.map(genreId => genreMap[genreId]);
-      return {
-        ...movie,
-        genre_names: genreNames,
-      };
-    });
-    mainMovies.value = moviesWithGenres; 
-  } catch(err) {
-    console.log(err);
-    loading.value = false
-    error.value = "Failed to load data"
-  }
+    mainMovies.value = data.results; 
 };
 
 const fetchUpcomings = async () => {
@@ -139,21 +118,7 @@ const fetchTvShows = async () => {
 
 const fetchSeries = async () => {
     const data = await client(`${API_BASE_URL}${API_VERSION}${SERIES_URL}?language=en-US`)
-    const genereData = await client(`${API_BASE_URL}${API_VERSION}${GENRE_SERIES_URL}?language=en`)
-    const genreMap = {};
-    genereData.genres.forEach(genre => {
-      genreMap[genre.id] = genre.name;
-    });
-    // Assign genre names to each movie
-    const moviesWithGenres = data.results.map(movie => {
-      const genreNames = movie.genre_ids.map(genreId => genreMap[genreId]);
-      return {
-        ...movie,
-        genre_names: genreNames,
-      };
-    });
-    series.value = moviesWithGenres; 
-    console.log(series.value);
+    series.value = data.results; 
 };
 
 

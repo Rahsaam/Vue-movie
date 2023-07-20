@@ -27,7 +27,7 @@
                     :imdb="mainMovie.vote_average.toFixed(1)"
                     :rating="mainMovie.vote_count"
                     casts="Jason statham, Adem sandler, Paul walker, Jim carry, Adam pally, Idris elba, Tika sumpter, Ben schwartz, James marsden"
-                    :genereNames="mainMovie.genre_names"/>
+                    :generes="mainMovie.genre_ids"/>
                 </section>
                 <section v-else class="lg:w-70% w-full grid grid-cols-2 items-end justify-center lg:grid-cols-1 md:grid-cols-5 sm:grid-cols-4 gap-x-2 lg:gap-x-0">
                     <series-content
@@ -43,7 +43,7 @@
                     :imdb="serial.vote_average.toFixed(1)"
                     :rating="serial.vote_count"
                     casts="Jason statham, Adem sandler, Paul walker, Jim carry, Adam pally, Idris elba, Tika sumpter, Ben schwartz, James marsden"
-                    :genereNames="serial.genre_names"/>
+                    :generes="serial.genre_ids"/>
                 </section>
                 
                 <div class="lg:w-1/3 w-full lg:ml-5">

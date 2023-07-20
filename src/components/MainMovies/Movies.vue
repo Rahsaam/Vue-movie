@@ -19,7 +19,7 @@
                     <small class="text-my-color-hover-gray text-2sm hidden lg:block">{{ year }} ,{{language}}</small>
                 </div>
                 <div class="gap-x-4 mt-4 hidden lg:flex text-white">
-                    <span class="border-2 py-2 px-3 rounded-full flex" v-for="genere in genereNames" :key="genere">{{genere}}</span>
+                    <span class="border-2 py-2 px-3 rounded-full flex" v-for="genere in genreNames" :key="genere">{{genere}}</span>
                 </div>
                 <div class="mt-4 border-b-2 border-my-color-secodary-gray pb-2 hidden lg:block">
                     <div class="text-sm">
@@ -40,8 +40,10 @@
 </template>
 
 <script setup>
-import { computed } from "vue"
+import { computed, ref } from "vue"
+import { getGenreNames } from "@/components/utils/genres";
 
+   const genreNames = ref([])
    const props = defineProps({
     mediaType: String,
     language: String,
@@ -52,9 +54,10 @@ import { computed } from "vue"
     imdb: String,
     casts: String,
     rating: Number,
-    genereNames: Array,
+    generes: Array,
     id: Number
    })
-
+   const res = getGenreNames(props.generes)
+   res.then(data => genreNames.value = data)
    const year = computed(() => new Date(props.releaseDate).getFullYear())
 </script>

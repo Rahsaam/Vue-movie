@@ -7,6 +7,7 @@ export const routes = [
     {
         path:'/', 
         name:'home', 
+        meta : {requiresAuth : true},
         component: MainPage
     },
     {

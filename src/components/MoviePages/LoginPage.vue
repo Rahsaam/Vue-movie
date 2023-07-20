@@ -43,11 +43,11 @@
 
 <script setup>
 import {ref } from "vue";
-import { login } from "@/components/utils/login-utils";
 import { useRouter } from "vue-router";
+import { inject } from 'vue'
+import { LOGIN } from '@/components/utils/keys';
 
-
-
+const login = inject(LOGIN)
 const username = ref('')
 const password = ref('')
 const router = useRouter()

@@ -1,7 +1,10 @@
-import { ref } from "vue";
+import { inject, ref } from "vue";
 import {client} from '@/components/utils/client.js'
+import { USER } from "@/components/utils/keys";
 
 export function useFetch(initialData = []) {
+    const user = inject(USER)
+    console.log(user);
     const data = ref(initialData)
     const loading = ref(false)
     const error = ref(null)
