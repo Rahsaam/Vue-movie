@@ -12,7 +12,7 @@ import { computed } from 'vue'
 const USER_ID = 'user_id'
 export default function useAuth(app) {
     const user = computed({
-        get: () => JSON.parse(sessionStorage.get(USER_ID) || 'null'),
+        get: () => JSON.parse(sessionStorage.getItem(USER_ID) || 'null'),
         set: (value) => sessionStorage.setItem(USER_ID, JSON.stringify(value))
       })
       
