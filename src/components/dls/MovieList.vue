@@ -22,11 +22,11 @@
                     :language="mainMovie.original_language"
                     :title="mainMovie.original_title"
                     :overview="mainMovie.overview"
-                    :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_LG}${mainMovie.poster_path}`"
+                    :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_XLG}${mainMovie.poster_path}`"
                     :release-date="mainMovie.release_date"
                     :imdb="mainMovie.vote_average.toFixed(1)"
                     :rating="mainMovie.vote_count"
-                    casts="Jason statham, Adem sandler, Paul walker, Jim carry, Adam pally, Idris elba, Tika sumpter, Ben schwartz, James marsden"
+                    
                     :generes="mainMovie.genre_ids"/>
                 </section>
                 <section v-else class="lg:w-70% w-full grid grid-cols-2 items-end justify-center lg:grid-cols-1 md:grid-cols-5 sm:grid-cols-4 gap-x-2 lg:gap-x-0">
@@ -38,7 +38,7 @@
                     :language="serial.original_language"
                     :name="serial.original_name"
                     :overview="serial.overview"
-                    :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_LG}${serial.poster_path}`"
+                    :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_XLG}${serial.poster_path}`"
                     :release-date="serial.first_air_date"
                     :imdb="serial.vote_average.toFixed(1)"
                     :rating="serial.vote_count"
@@ -60,8 +60,9 @@
     import asideBar from '@/components/dls/AsideBar.vue'
     import movies   from '@/components/MainMovies/Movies.vue'
     import seriesContent  from '@/components/MainMovies/Series.vue'
+    import { getMovieActors } from '@/components/utils/casts'; 
     
-    import {API_IMAGE_BASE_URL, API_IMAGE_SIZE_LG} from '../ApiDetails/api-constant';
+    import {API_IMAGE_BASE_URL, API_IMAGE_SIZE_LG, API_IMAGE_SIZE_XLG} from '../ApiDetails/api-constant';
 import {ref, watch } from 'vue';
     defineProps(['mainMovies', 'upComings', 'oldMovies', 'tvShows', 'series'])
 
@@ -85,6 +86,7 @@ import {ref, watch } from 'vue';
         }
         , 
         {immediate: true})
+    
     
 </script>
 

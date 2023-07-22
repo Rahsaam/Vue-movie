@@ -4,7 +4,7 @@ import { USER } from "@/components/utils/keys";
 
 export function useFetch(initialData = []) {
     const user = inject(USER)
-    console.log('user_id', user);
+    // console.log('user_id', user);
     const data = ref(initialData)
     const loading = ref(false)
     const error = ref(null)

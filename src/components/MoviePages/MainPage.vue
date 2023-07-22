@@ -1,7 +1,7 @@
 <template>
   <navbar/>
   <main-poster 
-  :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_XLG}${movieActive.backdrop_path}`"
+  :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_2XLG}${movieActive.backdrop_path}`"
   :title="movieActive.original_title"
   />
 
@@ -20,7 +20,7 @@
                     :key="movie.id"
                     :rating="movie.vote_count"
                     :release-date="movie.release_date"
-                    :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_MD}${movie.poster_path}`"
+                    :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_XLG}${movie.poster_path}`"
                     :title="movie.original_title"
                     :imdb="movie.vote_average"
                     /> 
@@ -54,6 +54,7 @@ import {
   API_IMAGE_BASE_URL,
   API_IMAGE_SIZE_MD,
   API_IMAGE_SIZE_XLG,
+  API_IMAGE_SIZE_2XLG,
   API_BASE_URL,
   API_VERSION
   } from '@/components/ApiDetails/api-constant';
@@ -74,6 +75,7 @@ import middleNavbar from '@/components/dls/MiddleNavbar.vue'
 import movieList from '@/components/dls/MovieList.vue'
 import footerContent from '@/components/dls/FooterContent.vue'
 import Navbar from '@/components/Navbar/Navbar.vue'
+
 // import useFetch from '@/composables/useFetch.js'
 
 // data arrays

@@ -1,7 +1,9 @@
-import MainPage        from '@/components/MoviePages/MainPage.vue' 
-import MovieDetailPage from '@/components/MoviePages/MovieDetailPage.vue' 
-import LoginPage       from '@/components/MoviePages/LoginPage.vue' 
+import MainPage               from '@/components/MoviePages/MainPage.vue' 
+import MovieDetailPage        from '@/components/MoviePages/MovieDetailPage.vue' 
+import LoginPage              from '@/components/MoviePages/LoginPage.vue' 
 import SerialDetailPage       from '@/components/MoviePages/SerialDetailPage.vue' 
+import WatchListPage          from '@/components/MoviePages/WatchListPage.vue' 
+import WatchListDetailPage          from '@/components/MoviePages/WatchListDetailPage.vue' 
 
 export const routes = [
     {
@@ -24,5 +26,15 @@ export const routes = [
         path:'/login', 
         name:'login', 
         component: LoginPage,
+    },
+    {
+        path:'/watchList', 
+        name:'WatchList', 
+        component: WatchListPage,
+    },
+    {
+        path:'/watchList/:id', 
+        name:'WatchListDetail', 
+        component: WatchListDetailPage,
     },
 ]

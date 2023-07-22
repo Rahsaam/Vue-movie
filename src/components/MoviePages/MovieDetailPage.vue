@@ -8,7 +8,7 @@
   <div v-else>
     <section class="relative h-[400px] w-full">
       <DetailImage
-        :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_XLG}${data.poster_path}`"
+        :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_2XLG}${data.poster_path}`"
         :genres="data.genres"
         :title="data.title"
         :actorsName="getTwoActors"
@@ -61,6 +61,7 @@ import { API_BASE_URL, API_VERSION } from '@/components/ApiDetails/api-constant'
 import {
   API_IMAGE_BASE_URL,
   API_IMAGE_SIZE_XLG,
+  API_IMAGE_SIZE_2XLG,
   API_IMAGE_SIZE_MD
 } from '@/components/ApiDetails/api-constant'
 import { useFetch } from '@/composables/useFetch'

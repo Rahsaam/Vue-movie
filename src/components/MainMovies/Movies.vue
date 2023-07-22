@@ -41,7 +41,7 @@
         </div>
         <div class="text-sm mt-2">
           <span class="text-my-color-hover-gray">Casts:</span>
-          <span class="ml-3 text-2sm text-blue-500">{{ casts }}</span>
+          <span class="ml-3 text-2sm text-blue-500" >{{ casts }}</span>
         </div>
       </div>
       <div class="border-b border-my-color-secodary-gray pb-1 hidden lg:block">
@@ -70,7 +70,7 @@ const props = defineProps({
   src: String,
   releaseDate: String,
   imdb: String,
-  casts: String,
+  casts: Array,
   rating: Number,
   generes: Array,
   id: Number

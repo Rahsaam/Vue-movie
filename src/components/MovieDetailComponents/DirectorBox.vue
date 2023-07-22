@@ -8,7 +8,7 @@
 
 <script setup>
 const props = defineProps(['directorName'])
-console.log(props.directorName);
+
 
 
 </script>
