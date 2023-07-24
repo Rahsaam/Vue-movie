@@ -1,5 +1,5 @@
 <template>
-  <div class="h-100 w-full bg-my-color-primary-gray">
+  <div class="h-100 w-full">
     
       <!-- <navbar/> -->
 

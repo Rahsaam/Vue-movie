@@ -1,9 +1,21 @@
 <template>
   <article class="flex lg:flex-row flex-col lg:mt-14 mt-4">
     <div class="relative lg:w-72 text-white cursor-pointer">
-      <button @click="addTowatchList(id)" class="absolute top-2 left-2 z-20 border-none">
-        <i class="fa-regular fa-bookmark text-xl hover:font-bold"></i>
-      </button>
+      <div>
+        <button
+          @click="addTowatchList(id)"
+          v-if="activeTab === 'emptyBookMark'"
+          class="absolute top-2 left-2 z-20 border-none"
+        >
+          <i class="fa-regular fa-bookmark text-xl hover:text-gray-500"></i>
+        </button>
+        <button v-else class="absolute top-2 left-2 z-20 border-none">
+          <i class="fa-solid fa-bookmark text-xl"></i>
+        </button>
+        <button @click="addToFavorite(id)" class="absolute top-2 right-2 z-20">
+          <i class="fa-regular fa-heart hover:text-red-500 text-xl"></i>
+        </button>
+      </div>
       <router-link :to="{ name: 'movieDetail', params: { id } }">
         <img :src="src" class="w-full rounded-2xl" :alt="title" />
         <div
@@ -41,7 +53,7 @@
         </div>
         <div class="text-sm mt-2">
           <span class="text-my-color-hover-gray">Casts:</span>
-          <span class="ml-3 text-2sm text-blue-500" >{{ casts }}</span>
+          <span class="ml-3 text-2sm text-blue-500">{{ casts }}</span>
         </div>
       </div>
       <div class="border-b border-my-color-secodary-gray pb-1 hidden lg:block">
@@ -53,13 +65,15 @@
 </template>
 
 <script setup>
-import { computed, inject, ref } from 'vue'
+import { computed, inject, onMounted, ref, watch } from 'vue'
 import { getGenreNames } from '@/components/utils/genres'
 import { USER } from '@/components/utils/keys'
 import { client } from '@/components/utils/client'
 import { API_BASE_URL } from '@/components/ApiDetails/api-constant.js'
 import { API_VERSION } from '@/components/ApiDetails/api-constant.js'
 import { API_READ_ACCESS_TOKEN } from '@/components/ApiDetails/api-constant.js'
+import { useToast } from 'vue-toastification'
+const toast = useToast()
 
 const genreNames = ref([])
 const props = defineProps({
@@ -79,12 +93,21 @@ const res = getGenreNames(props.generes)
 res.then((data) => (genreNames.value = data))
 const year = computed(() => new Date(props.releaseDate).getFullYear())
 const user = inject(USER)
+const activeTab = ref(localStorage.getItem('activeTab') || 'emptyBookMark')
+console.log(activeTab.value)
+
+onMounted(() => {
+  // When the component is mounted, set the activeTab state to the stored value (if available).
+  if (localStorage.getItem('activeTab')) {
+    activeTab.value = localStorage.getItem('activeTab')
+  }
+})
+const sessionId = sessionStorage.getItem('session_id')
 async function addTowatchList(movieId) {
   try {
     if (!user.value) {
       alert('please login to the page first')
     }
-    const sessionId = sessionStorage.getItem('session_id')
     const url = `${API_BASE_URL}${API_VERSION}/account/${user.value.id}/watchlist?session_id=${sessionId}`
     const options = {
       method: 'POST',
@@ -102,9 +125,33 @@ async function addTowatchList(movieId) {
 
     const response = await fetch(url, options)
     const data = await response.json()
+    toast.success('added to watch list')
     console.log(data)
+    activeTab.value = 'solidBookMark'
   } catch (err) {
     console.log(err)
   }
+}
+
+
+// favorites movies
+async function addToFavorite(movieId) {
+  const url = `${API_BASE_URL}${API_VERSION}/account/${user.value.id}/favorite?session_id=${sessionId}`
+  const options = {
+    method: 'POST',
+    headers: {
+      accept: 'application/json',
+      'content-type': 'application/json',
+      Authorization:
+        `Bearer ${API_READ_ACCESS_TOKEN}`
+    },
+    body: JSON.stringify({ media_type: 'movie', media_id: movieId, favorite: true })
+  }
+
+  fetch(url, options)
+    .then((response) => response.json())
+    toast.success('added to favorite list in profile page')
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err))
 }
 </script>

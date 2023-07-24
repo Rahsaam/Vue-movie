@@ -8,7 +8,6 @@
                 <h2 class="font-bold text-3xl md:text-5xl uppercase">{{ title }}</h2>
                 <div class="flex w-full justify-between  sm:py-4">
                         <button class="btn-primary">watch trailer <i class="fa-solid fa-play"></i></button>
-                        <i class="fa-solid fa-angle-right text-xl md:text-3xl movie-box-icon-main"></i>
                 </div>
             </div>
         </div>

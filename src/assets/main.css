@@ -33,4 +33,7 @@ body {
     .section-title {
         @apply text-my-color-hover-gray uppercase mb-2 text-lg
     }
+    .for-you-movie {
+        @apply bg-my-color-dark-orange p-2 w-full rounded-l-3xl  md:mr-5 text-white flex items-center justify-between cursor-pointer hover:bg-my-color-pale-gray
+    }
 }

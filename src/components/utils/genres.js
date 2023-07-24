@@ -15,7 +15,7 @@ export async function getGenreNames(id) {
 
 export async function getWatchGenreNames(id) {
     let genreNames = []
-    const response = await client(`${API_BASE_URL}3/account/20101879/watchlist/movies`)
+    const response = await client(`${API_BASE_URL}3/genre/movie/list`)
     for(let genre of response.genres) {
         if (id.includes(genre.id)) {
             genreNames.push(genre.name)
@@ -33,4 +33,16 @@ export async function getGenreNamesSeries(id) {
         }
     }
     return seriesGenres;
+}
+
+
+export async function getGenreNamesFavorite(id) {
+    let favoriteGenres = []
+    const response = await client(`${API_BASE_URL}3/genre/movie/list`)
+    for(let genre of response.genres) {
+        if(id.includes(genre.id)) {
+            favoriteGenres.push(genre.name)
+        }
+    }
+    return favoriteGenres;
 }

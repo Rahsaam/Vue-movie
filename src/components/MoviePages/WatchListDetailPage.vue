@@ -1,4 +1,5 @@
 <template>
+  <navbar/>
   <div v-if="loading" class="mt-40">
     <sppiner />
   </div>
@@ -7,9 +8,12 @@
   </div>
   <div v-else>
     <DetailImage
-      :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_2XLG}${data.poster_path}`"
+      :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_2XLG}${data.backdrop_path}`"
+      :movie="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_2XLG}${data.poster_path}`"
       :genres="data.genres"
       :title="data.title"
+      :overview="data.overview"
+      :imdb="data.vote_average"
     />
   </div>
 </template>
@@ -26,13 +30,7 @@ import {
 } from '@/components/ApiDetails/api-constant'
 import Sppiner from '@/components/dls/Sppiner.vue'
 import DetailImage from '@/components/MovieDetailComponents/DetailImage.vue'
-import playBtnBox from '@/components/MovieDetailComponents/PlayBtnBox.vue'
-import directorBox from '@/components/MovieDetailComponents/DirectorBox.vue'
-import lengthBox from '@/components/MovieDetailComponents/LengthBox.vue'
-import releaseBox from '@/components/MovieDetailComponents/releaseBox.vue'
-import overviewBox from '@/components/MovieDetailComponents/OverviewBox.vue'
-import moreInfoBox from '@/components/MovieDetailComponents/MoreInfoBox.vue'
-import actorsBox from '@/components/MovieDetailComponents/ActorsBox.vue'
+import Navbar from '@/components/Navbar/Navbar.vue'
 const { data, doFetch, loading, error } = useFetch()
 
 const route = useRoute()
@@ -45,6 +43,7 @@ watch(
     immediate: true
   }
 )
+console.log('movie-data' ,data);
 </script>
 
 <style></style>
