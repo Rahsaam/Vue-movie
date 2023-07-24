@@ -11,7 +11,7 @@ import {
   ACCOUNT_URL
 } from '@/components/ApiDetails/endPoints'
 
-import { LOGIN, USER } from '@/components/utils/keys'
+import { LOGIN, USER, LOGOUT } from '@/components/utils/keys'
 import { computed } from 'vue'
 const USER_ID = 'user_id'
 export default function useAuth(app) {
@@ -115,6 +115,11 @@ export default function useAuth(app) {
     user.value = await userAccount()
   }
 
+  function logout() {
+    sessionStorage.clear()
+}
+
   app.provide(USER, user)
   app.provide(LOGIN, login)
+  app.provide(LOGOUT, logout)
 }

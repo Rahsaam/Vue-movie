@@ -5,6 +5,7 @@ import SerialDetailPage       from '@/components/MoviePages/SerialDetailPage.vue
 import WatchListPage          from '@/components/MoviePages/WatchListPage.vue' 
 import WatchListDetailPage    from '@/components/MoviePages/WatchListDetailPage.vue' 
 import ProfilePage            from '@/components/MoviePages/ProfilePage.vue' 
+import LogoutPage             from '@/components/MoviePages/LogoutPage.vue' 
 
 export const routes = [
     {
@@ -26,6 +27,11 @@ export const routes = [
         path:'/login', 
         name:'login', 
         component: LoginPage,
+    },
+    {
+        path:'/logout', 
+        name:'Logout', 
+        component: LogoutPage,
     },
     {
         path:'/watchList', 

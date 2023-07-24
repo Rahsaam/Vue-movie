@@ -14,7 +14,7 @@
                 </svg>
             </div>
             <ul class="hidden md:flex space-x-7 text-white" aria-haspopup="menu" aria-expanded="false" aria-controls="menuContent">
-                <li class="hover:text-slate-300" aria-selected="true"><a  href="logout.html">Logout</a></li>
+                <nav-link v-if="user" text="Logout" to="/logout"/>
                 <nav-link v-if="!user" text="Login" to="/login"/>
                 <nav-link  text="Home" to="/"/>
                 <nav-link v-if="user" text="Profile" to="/profile"/>
