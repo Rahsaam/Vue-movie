@@ -42,7 +42,7 @@
         </div>
         <div class="text-sm mt-2">
           <span class="text-my-color-hover-gray">Casts:</span>
-          <span class="ml-3 text-2sm text-blue-500">{{ casts }}</span>
+          <span class="ml-3 text-2sm text-blue-500" v-for="actor in actorNames" :key="actor">{{ actor }}</span>
         </div>
       </div>
       <div class="border-b border-my-color-secodary-gray pb-1 hidden lg:block">
@@ -56,12 +56,14 @@
 <script setup>
 import { computed, inject, ref } from 'vue'
 import { getGenreNamesSeries } from '@/components/utils/genres'
+import { getSeriesActors } from '@/components/utils/casts'
 import { API_READ_ACCESS_TOKEN } from '@/components/ApiDetails/api-constant.js'
 import { USER } from '@/components/utils/keys'
 import { API_BASE_URL, API_VERSION } from '@/components/ApiDetails/api-constant.js'
 import { useToast } from 'vue-toastification'
 const toast = useToast()
 const genreNames = ref([])
+const actorNames = ref([])
 const props = defineProps({
   mediaType: String,
   language: String,
@@ -100,4 +102,7 @@ async function addToWatchList(movieId) {
     toast.success('added to watch list')
     .catch((err) => console.error(err))
 }
+
+const response = getSeriesActors(props.id)
+response.then(data => actorNames.value = data)
 </script>
