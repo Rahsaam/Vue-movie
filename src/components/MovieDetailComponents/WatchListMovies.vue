@@ -69,6 +69,7 @@ async function removeFromWatchList(movieId) {
     const response = await fetch(url, options)
     const data = await response.json()
     toast.success('remove from watch list')
+    window.location.reload()
     console.log(data)
   } catch (err) {
     console.log(err)
