@@ -9,7 +9,7 @@
                 
             </div>
             <main class="flex lg:flex-row flex-col ">
-                <section v-if="activeTab === 'movies'" class="lg:w-70% w-full grid grid-cols-2 items-end justify-center lg:grid-cols-1 md:grid-cols-5 sm:grid-cols-4 gap-x-2 lg:gap-x-0">
+                <section v-if="activeTab === 'movies'" class="lg:w-70% w-full grid grid-cols-1 items-end justify-center lg:grid-cols-1 md:grid-cols-5 sm:grid-cols-4 gap-x-2 lg:gap-x-0">
                     <movies 
                     v-for="mainMovie in mainMovies" 
                     :key="mainMovie.id"
@@ -25,7 +25,7 @@
                     
                     :generes="mainMovie.genre_ids"/>
                 </section>
-                <section v-else class="lg:w-70% w-full grid grid-cols-2 items-end justify-center lg:grid-cols-1 md:grid-cols-5 sm:grid-cols-4 gap-x-2 lg:gap-x-0">
+                <section v-else class="lg:w-70% w-full grid grid-cols-1 items-end justify-center lg:grid-cols-1 md:grid-cols-5 sm:grid-cols-4 gap-x-2 lg:gap-x-0">
                     <series-content
                     v-for="serial in series"
                     :key="serial.id"

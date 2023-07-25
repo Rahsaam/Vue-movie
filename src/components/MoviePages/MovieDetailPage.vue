@@ -1,4 +1,5 @@
 <template>
+  <navbar/>
   <div v-if="loading" class="mt-40">
     <sppiner />
   </div>
@@ -49,6 +50,7 @@
         </div>
       </article>
     </main>
+    <footer-content/>
   </div>
 </template>
 
@@ -74,7 +76,8 @@ import overviewBox from '@/components/MovieDetailComponents/OverviewBox.vue'
 import moreInfoBox from '@/components/MovieDetailComponents/MoreInfoBox.vue'
 import actorsBox from '@/components/MovieDetailComponents/ActorsBox.vue'
 import Sppiner from '@/components/dls/Sppiner.vue'
-
+import footerContent from '@/components/dls/FooterContent.vue'
+import Navbar from '@/components/Navbar/Navbar.vue'
 // const moviesDetail = ref([])
 const crewsAndCasts = ref([])
 const casts = ref([])

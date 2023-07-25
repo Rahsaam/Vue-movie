@@ -98,12 +98,7 @@ const user = inject(USER)
 const activeTab = ref(localStorage.getItem('activeTab') || 'emptyBookMark')
 
 
-// onMounted(() => {
 
-//   if (localStorage.getItem('activeTab')) {
-//     activeTab.value = localStorage.getItem('activeTab')
-//   }
-// })
 const sessionId = sessionStorage.getItem('session_id')
 async function addTowatchList(movieId) {
   try {

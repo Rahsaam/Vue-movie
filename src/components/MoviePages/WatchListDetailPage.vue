@@ -50,7 +50,7 @@
         </div>
       </article>
     </main>
-    
+   <footerContent/> 
   </div>
 </template>
 
@@ -77,6 +77,7 @@ import moreInfoBox from '@/components/MovieDetailComponents/MoreInfoBox.vue'
 import actorsBox from '@/components/MovieDetailComponents/ActorsBox.vue'
 import Sppiner from '@/components/dls/Sppiner.vue'
 import navbar from '@/components/Navbar/Navbar.vue'
+import footerContent from '@/components/dls/FooterContent.vue'
 const { data, doFetch, loading, error } = useFetch()
 
 const route = useRoute()

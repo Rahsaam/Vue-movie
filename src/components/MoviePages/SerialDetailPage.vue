@@ -1,4 +1,5 @@
 <template>
+  <navbar/>
   <section class="relative h-[400px] w-full">
     <DetailImage
       :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_2XLG}${seriesDetail.poster_path}`"
@@ -40,6 +41,7 @@
         />
       </div>
     </article>
+    <footerContent/>
   </main>
 </template>
 
@@ -64,7 +66,8 @@ import releaseBox from '@/components/MovieDetailComponents/releaseBox.vue'
 import overviewBox from '@/components/MovieDetailComponents/OverviewBox.vue'
 import moreInfoSeries from '@/components/MovieDetailComponents/MoreInfoSeries.vue'
 import actorsBox from '@/components/MovieDetailComponents/ActorsBox.vue'
-
+import footerContent from '@/components/dls/FooterContent.vue'
+import Navbar from '@/components/Navbar/Navbar.vue'
 const seriesDetail = ref([])
 const crewsAndCasts = ref([])
 const casts = ref([])

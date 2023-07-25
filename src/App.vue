@@ -10,6 +10,7 @@
 </template>
 
 <script setup>
+import footerContent from '@/components/dls/FooterContent.vue'
     // import navbar from '@/components/Navbar/Navbar.vue'
   
 </script>

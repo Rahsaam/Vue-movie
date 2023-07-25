@@ -4,7 +4,7 @@
 
   </div>
   <main-poster 
-  :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_2XLG}${movieActive.backdrop_path}`"
+  :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_2XLG}${movieActive.poster_path}`"
   :title="movieActive.original_title"
   />
 

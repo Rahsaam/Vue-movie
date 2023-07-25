@@ -41,7 +41,9 @@
         </div>
       </form>
     </div>
+    
   </div>
+
 </template>
 
 <script setup>
@@ -50,6 +52,7 @@ import { useRouter } from 'vue-router'
 import { inject } from 'vue'
 import { LOGIN } from '@/components/utils/keys'
 import { useToast } from 'vue-toastification'
+
 
 const toast = useToast()
 const login = inject(LOGIN)

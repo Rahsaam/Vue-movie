@@ -40,6 +40,7 @@
       <!-- movies -->
     </main>
   </div>
+  
 </template>
 
 <script setup>
@@ -51,6 +52,7 @@ import { inject, onMounted, ref } from 'vue'
 import { USER } from '@/components/utils/keys'
 import { API_BASE_URL, API_VERSION } from '@/components/ApiDetails/api-constant'
 import Sppiner from '@/components/dls/Sppiner.vue'
+
 const accountData = ref([])
 const accountImage = ref('')
 const favoriteMovies = ref([])
