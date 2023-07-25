@@ -1,13 +1,16 @@
 <template>
-  <router-link :to="{name: 'Favorite', params: {id}}">
+  
   <div class="flex bg-my-color-dark-orange rounded-3xl relative">
+    
     <li class="for-you-movie" aria-selected="true">
       <div class="flex items-center">
+        <router-link :to="{name: 'Favorite', params: {id}}">
         <img
           :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_XLG}/${src}`"
-          class="w-10 md:h-auto rounded-full"
+          class="w-10 md:h-auto rounded-full relative hover:border-2"
           alt=""
         />
+      </router-link>
         <h6 class="ml-3 hidden md:block">{{ title }}</h6>
       </div>
       <div class="flex flex-col">
@@ -16,11 +19,12 @@
         <small>{{ year }}</small>
       </div>
     </li>
+  
     <button @click="removeFromFavorite(id)" class="absolute right-2 top-1">
       <i class="fa-solid text-xl text-white fa-circle-xmark hover:text-red-500 cursor-pointer"></i>
     </button>
   </div>
-</router-link>
+
 </template>
 
 <script setup>

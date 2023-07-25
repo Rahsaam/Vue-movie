@@ -34,6 +34,6 @@ body {
         @apply text-my-color-hover-gray uppercase mb-2 text-lg
     }
     .for-you-movie {
-        @apply  p-2 w-full text-white flex items-center justify-between sm:px-16 pr-10 text-center sm:text-left text-sm cursor-pointer hover:bg-my-color-pale-gray rounded-3xl
+        @apply  p-2 w-full text-white flex items-center justify-between sm:px-16 pr-10 text-center sm:text-left text-sm rounded-3xl
     }
 }
