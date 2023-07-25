@@ -66,7 +66,7 @@ async function sigin() {
       router.replace('/')
     
   } catch (error) {
-    toast.error('Login Failed')
+    toast.error('Login Failed MAN')
   }
 }
 </script>
