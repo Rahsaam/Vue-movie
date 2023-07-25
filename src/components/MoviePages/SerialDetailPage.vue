@@ -12,7 +12,7 @@
       class="absolute sm:grid sm:grid-cols-2 gap-2 sm:-bottom-60 max-w-7xl mx-auto px-5 md:flex md:-bottom-16 md:gap-x-3 left-0 right-0 justify-around w-full"
     >
       <playBtnBox />
-      <director-box :directorName="getDirectorName" />
+
       <lengthBoxSerial :length="seriesDetail.number_of_seasons" />
       <releaseBox :year="seriesDetail.first_air_date" />
     </div>
@@ -23,9 +23,8 @@
   <main class="w-full max-w-7xl mx-auto px-5">
     <div class="flex justify-between">
       <overviewBox :overview="seriesDetail.overview" />
-      <moreInfoBox
+      <more-info-series
         :imdb="seriesDetail.vote_average.toFixed(1)"
-        :budget="seriesDetail.budget"
         :likes="seriesDetail.vote_count"
       />
     </div>
@@ -59,17 +58,16 @@ import {
 
 import DetailImage from '@/components/MovieDetailComponents/DetailImage.vue'
 import playBtnBox from '@/components/MovieDetailComponents/PlayBtnBox.vue'
-import directorBox from '@/components/MovieDetailComponents/DirectorBox.vue'
+
 import lengthBoxSerial from '@/components/MovieDetailComponents/LengthBoxSerial.vue'
 import releaseBox from '@/components/MovieDetailComponents/releaseBox.vue'
 import overviewBox from '@/components/MovieDetailComponents/OverviewBox.vue'
-import moreInfoBox from '@/components/MovieDetailComponents/MoreInfoBox.vue'
+import moreInfoSeries from '@/components/MovieDetailComponents/MoreInfoSeries.vue'
 import actorsBox from '@/components/MovieDetailComponents/ActorsBox.vue'
 
 const seriesDetail = ref([])
 const crewsAndCasts = ref([])
 const casts = ref([])
-const getDirectorName = ref('')
 const getTwoActors = ref([])
 const route = useRoute()
 
@@ -80,17 +78,10 @@ const getSerialDetail = async (series_id) => {
 const getCrewsAndCastsData = async (series_id) => {
   const data = await client(`${API_BASE_URL}${API_VERSION}/tv/${series_id}/credits?language=en-US`)
   crewsAndCasts.value = data
-  const crewsArr = data.crew
   const castsArr = data.cast
   casts.value = castsArr
-  crewsArr.forEach((crew) => {
-    if (crew.job === 'Series Director') {
-      let directorName = crew.name
-      getDirectorName.value = directorName
-    }
-    const twoActors = castsArr.slice(0, 2).map((cast) => cast.name)
-    getTwoActors.value = twoActors
-  })
+  const twoActors = castsArr.slice(0, 2).map((cast) => cast.name)
+  getTwoActors.value = twoActors
 }
 
 // const getDirectorName

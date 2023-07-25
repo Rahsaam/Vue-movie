@@ -12,7 +12,7 @@
             </div>
             <div class="flex items-center justify-between md:w-10 w-auto">
                 <img src="@/assets/money-bag.png" class="w-8 mr-2" alt="" srcset="">
-                <!-- <span class="text-white font-extrabold ">{{ budgett }}K</span> -->
+                <span class="text-white font-extrabold ">{{ budgett }}K</span>
             </div>
         </div>
     </article>
@@ -26,9 +26,9 @@ const props =defineProps({
     budget: Number,
     likes: Number
 })
-// const budgetMoney = props.budget.toString()
-// const endIndex = Math.floor(budgetMoney.length / 3)
-// const budgett = computed(() => budgetMoney.slice(0, endIndex))
+const budgetMoney = props.budget.toString()
+const endIndex = Math.floor(budgetMoney.length / 3)
+const budgett = computed(() => budgetMoney.slice(0, endIndex))
 </script>
 
 <style>
