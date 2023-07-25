@@ -31,11 +31,11 @@
             aria-expanded="true"
             aria-controls="menu"
             aria-haspopup="menu">
-                <li class="hover:text-slate-300" aria-selected="true"><a  href="main.html">Watch list</a></li>
-                <li class="hover:text-slate-300" aria-selected="true"><a  href="profile.html">Profile</a></li>
-                <li class="hover:text-slate-300" aria-selected="true"><a  href="index.html">Movie page</a></li>
-                <li class="hover:text-slate-300" aria-selected="true"><a  href="login.html">Login</a></li>
-                <li class="hover:text-slate-300" aria-selected="true"><a  href="logout.html">Logout</a></li>
+            <nav-link v-if="user" text="Logout" to="/logout"/>
+                <nav-link v-if="!user" text="Login" to="/login"/>
+                <nav-link  text="Home" to="/"/>
+                <nav-link v-if="user" text="Profile" to="/profile"/>
+                <nav-link v-if="user" text="Watchlist" to="/watchList"/>
             </ul>
     </nav>
 </div>

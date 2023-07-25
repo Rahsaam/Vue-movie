@@ -42,7 +42,6 @@ const props = defineProps({
   id: Number
 })
 let res = getWatchGenreNames(props.genres)
-console.log(res);
 res.then(data => genreNames.value = data)
 
 
@@ -70,7 +69,6 @@ async function removeFromWatchList(movieId) {
     const data = await response.json()
     toast.success('remove from watch list')
     window.location.reload()
-    console.log(data)
   } catch (err) {
     console.log(err)
   }

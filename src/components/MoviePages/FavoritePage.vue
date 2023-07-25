@@ -1,4 +1,5 @@
 <template>
+  <navbar />
   <div v-if="loading" class="mt-40">
     <sppiner />
   </div>
@@ -14,7 +15,7 @@
         :actorsName="getTwoActors"
       />
 
-      <!-- boxes -->
+      
       <div
         class="absolute sm:grid sm:grid-cols-2 gap-2 sm:-bottom-60 max-w-7xl mx-auto px-5 md:flex md:-bottom-16 md:gap-x-3 left-0 right-0 justify-around w-full"
       >
@@ -26,7 +27,7 @@
     </section>
     <div class="md:h-36 sm:h-72 h-96"></div>
     <div class="md:h-0 sm:h-0 h-28"></div>
-    <!-- description -->
+
     <main class="w-full max-w-7xl mx-auto px-5">
       <div class="flex justify-between">
         <overviewBox :overview="data.overview" />
@@ -53,7 +54,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+    import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { client } from '@/components/utils/client.js'
 
@@ -74,14 +75,14 @@ import overviewBox from '@/components/MovieDetailComponents/OverviewBox.vue'
 import moreInfoBox from '@/components/MovieDetailComponents/MoreInfoBox.vue'
 import actorsBox from '@/components/MovieDetailComponents/ActorsBox.vue'
 import Sppiner from '@/components/dls/Sppiner.vue'
+import navbar from '@/components/Navbar/Navbar.vue'
+const { data, doFetch, loading, error } = useFetch()
 
-// const moviesDetail = ref([])
+const route = useRoute()
 const crewsAndCasts = ref([])
 const casts = ref([])
 const getDirectorName = ref('')
 const getTwoActors = ref([])
-const route = useRoute()
-const { doFetch, data, loading, error } = useFetch()
 
 const getCrewsAndCastsData = async (movie_id) => {
   const data = await client(
@@ -100,8 +101,6 @@ const getCrewsAndCastsData = async (movie_id) => {
     getTwoActors.value = twoActors
   })
 }
-
-// const getDirectorName
 watch(
   () => route.params.id,
   (newValue) => {
@@ -112,6 +111,8 @@ watch(
     immediate: true
   }
 )
+
+
 </script>
 
 <style></style>

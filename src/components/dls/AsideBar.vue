@@ -59,7 +59,7 @@
         />
       </div>
     </article>
-    <generes />
+
   </aside>
 </template>
 
@@ -67,7 +67,7 @@
 import comingSoon from '@/components/Aside/ComingSoon.vue'
 import oldMoviesContent from '@/components/Aside/OldMovies.vue'
 import tvShowss from '@/components/Aside/TvShows.vue'
-import generes from '@/components/Aside/Generes.vue'
+
 import { API_IMAGE_BASE_URL, API_IMAGE_SIZE_MD, API_IMAGE_SIZE_XLG } from '@/components/ApiDetails/api-constant'
 defineProps(['upComings', 'oldMovies', 'tvShows'])
 </script>

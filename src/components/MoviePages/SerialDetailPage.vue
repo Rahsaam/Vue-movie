@@ -75,7 +75,6 @@ const route = useRoute()
 
 const getSerialDetail = async (series_id) => {
   const data = await client(`${API_BASE_URL}${API_VERSION}/tv/${series_id}?language=en-US`)
-  console.log(data)
   seriesDetail.value = data
 }
 const getCrewsAndCastsData = async (series_id) => {
@@ -83,7 +82,6 @@ const getCrewsAndCastsData = async (series_id) => {
   crewsAndCasts.value = data
   const crewsArr = data.crew
   const castsArr = data.cast
-  console.log(crewsArr)
   casts.value = castsArr
   crewsArr.forEach((crew) => {
     if (crew.job === 'Series Director') {

@@ -38,7 +38,6 @@ async function getWatchList() {
     loading.value = true
     const response = await client(`${API_BASE_URL}${API_VERSION}/account/${user.value.id}/watchlist/movies`)
     ListMovies.value = response.results
-    console.log('hello' ,response);
   } catch (err) {
     error.value = err.massage
   } finally {

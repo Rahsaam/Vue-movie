@@ -6,11 +6,7 @@
                     <div class="border"></div>
                     <li id="series" class="text-lg font-bold scroll-mt-16"><a href="" :class="{activeTab: activeTab === 'series'}" @click.prevent="activeTab = 'series'" class="hover:font-extrabold transition">Series</a></li>
                 </ul>
-                <ul class="flex text-my-color-secodary-gray gap-x-3">
-                    <li><a href="" class="hover:text-my-color-dark-orange transition">All</a></li>
-                    <li><a href="" class="hover:text-my-color-dark-orange transition">Newest</a></li>
-                    <li><a href="" class="hover:text-my-color-dark-orange transition">Popular</a></li>
-                </ul>
+                
             </div>
             <main class="flex lg:flex-row flex-col ">
                 <section v-if="activeTab === 'movies'" class="lg:w-70% w-full grid grid-cols-2 items-end justify-center lg:grid-cols-1 md:grid-cols-5 sm:grid-cols-4 gap-x-2 lg:gap-x-0">

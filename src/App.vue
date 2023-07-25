@@ -1,7 +1,8 @@
 <template>
+   <!-- <navbar/> -->
   <div class="h-100 w-full">
     
-      <!-- <navbar/> -->
+     
 
     
     <router-view/>

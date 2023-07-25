@@ -1,9 +1,6 @@
 <template>
   <article class="flex lg:flex-row flex-col lg:mt-14 mt-4">
     <div class="relative lg:w-72 text-white cursor-pointer">
-        <button @click="addToWatchList(id)" class="absolute top-2 left-2 z-20">
-          <i class="fa-regular fa-bookmark text-xl hover:text-gray-500"></i>
-        </button>
       <router-link :to="{ name: 'serialDetail', params: { id } }">
         
         <img :src="src" class="w-full rounded-2xl" :alt="name" />
@@ -54,14 +51,11 @@
 </template>
 
 <script setup>
-import { computed, inject, ref } from 'vue'
+import { computed, ref } from 'vue'
 import { getGenreNamesSeries } from '@/components/utils/genres'
 import { getSeriesActors } from '@/components/utils/casts'
-import { API_READ_ACCESS_TOKEN } from '@/components/ApiDetails/api-constant.js'
-import { USER } from '@/components/utils/keys'
-import { API_BASE_URL, API_VERSION } from '@/components/ApiDetails/api-constant.js'
-import { useToast } from 'vue-toastification'
-const toast = useToast()
+
+
 const genreNames = ref([])
 const actorNames = ref([])
 const props = defineProps({
@@ -80,28 +74,9 @@ const props = defineProps({
 const res = getGenreNamesSeries(props.generes)
 res.then((data) => (genreNames.value = data))
 const year = computed(() => new Date(props.releaseDate).getFullYear())
-const user = inject(USER)
-const sessionId = sessionStorage.getItem('session_id')
 
 
-async function addToWatchList(movieId) {
-  const url = `${API_BASE_URL}${API_VERSION}/account/${user.value.id}/watchlist?session_id=${sessionId}`
-  const options = {
-    method: 'POST',
-    headers: {
-      accept: 'application/json',
-      'content-type': 'application/json',
-      Authorization: `Bearer ${API_READ_ACCESS_TOKEN}`
-    },
-    body: JSON.stringify({ media_type: 'movie', media_id: movieId, watchlist: true })
-  }
 
-  fetch(url, options)
-    .then((response) => response.json())
-    .then(data => console.log(data))
-    toast.success('added to watch list')
-    .catch((err) => console.error(err))
-}
 
 const response = getSeriesActors(props.id)
 response.then(data => actorNames.value = data)

@@ -96,14 +96,14 @@ res.then((data) => (genreNames.value = data))
 const year = computed(() => new Date(props.releaseDate).getFullYear())
 const user = inject(USER)
 const activeTab = ref(localStorage.getItem('activeTab') || 'emptyBookMark')
-console.log(activeTab.value)
 
-onMounted(() => {
-  // When the component is mounted, set the activeTab state to the stored value (if available).
-  if (localStorage.getItem('activeTab')) {
-    activeTab.value = localStorage.getItem('activeTab')
-  }
-})
+
+// onMounted(() => {
+
+//   if (localStorage.getItem('activeTab')) {
+//     activeTab.value = localStorage.getItem('activeTab')
+//   }
+// })
 const sessionId = sessionStorage.getItem('session_id')
 async function addTowatchList(movieId) {
   try {
@@ -128,8 +128,8 @@ async function addTowatchList(movieId) {
     const response = await fetch(url, options)
     const data = await response.json()
     toast.success('added to watch list')
-    console.log(data)
-    activeTab.value = 'solidBookMark'
+ 
+    // activeTab.value = 'solidBookMark'
   } catch (err) {
     console.log(err)
   }
@@ -156,7 +156,6 @@ async function addToFavorite(movieId) {
   fetch(url, options)
     .then((response) => response.json())
     toast.success('added to favorite list in profile page')
-    .then((response) => console.log(response))
     .catch((err) => console.error(err))
 }
 </script>

@@ -6,6 +6,7 @@ import WatchListPage          from '@/components/MoviePages/WatchListPage.vue'
 import WatchListDetailPage    from '@/components/MoviePages/WatchListDetailPage.vue' 
 import ProfilePage            from '@/components/MoviePages/ProfilePage.vue' 
 import LogoutPage             from '@/components/MoviePages/LogoutPage.vue' 
+import FavoritePage           from '@/components/MoviePages/FavoritePage.vue' 
 
 export const routes = [
     {
@@ -48,6 +49,12 @@ export const routes = [
         path:'/profile', 
         name:'Profile', 
         component: ProfilePage,
+        meta : {requiresAuth : true},
+    },
+    {
+        path:'/favorite/:id', 
+        name:'Favorite', 
+        component: FavoritePage,
         meta : {requiresAuth : true},
     },
 ]
