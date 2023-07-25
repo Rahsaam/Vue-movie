@@ -7,6 +7,8 @@ import WatchListDetailPage    from '@/components/MoviePages/WatchListDetailPage.
 import ProfilePage            from '@/components/MoviePages/ProfilePage.vue' 
 import LogoutPage             from '@/components/MoviePages/LogoutPage.vue' 
 import FavoritePage           from '@/components/MoviePages/FavoritePage.vue' 
+import TrendPage              from '@/components/MoviePages/TrendPage.vue' 
+import OldMoviesPage          from '@/components/MoviePages/OldMoviesPage.vue' 
 
 export const routes = [
     {
@@ -56,5 +58,15 @@ export const routes = [
         name:'Favorite', 
         component: FavoritePage,
         meta : {requiresAuth : true},
+    },
+    {
+        path:'/trends/:id', 
+        name:'Trend', 
+        component: TrendPage,
+    },
+    {
+        path:'/old-movies/:id', 
+        name:'OldMovies', 
+        component: OldMoviesPage,
     },
 ]

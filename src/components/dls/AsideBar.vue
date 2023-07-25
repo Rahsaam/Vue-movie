@@ -28,6 +28,7 @@
         <oldMoviesContent
           v-for="movie in oldMovies"
           :key="movie.id"
+          :id="movie.id"
           :title="movie.original_title"
           :release="movie.release_date"
           :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_XLG}${movie.poster_path}`"

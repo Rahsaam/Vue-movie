@@ -1,8 +1,5 @@
 <template>
   <navbar/>
-  <div v-if="loading">
-
-  </div>
   <main-poster 
   :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_2XLG}${movieActive.poster_path}`"
   :title="movieActive.original_title"
@@ -26,6 +23,7 @@
                     :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_XLG}${movie.poster_path}`"
                     :title="movie.original_title"
                     :imdb="movie.vote_average"
+                    :id="movie.id"
                     /> 
                  
                 </div>
@@ -55,7 +53,6 @@ import { onMounted, onUnmounted, ref } from 'vue';
 import trendMovies from '@/components/dls/TrendMovies.vue';
 import {
   API_IMAGE_BASE_URL,
-  API_IMAGE_SIZE_MD,
   API_IMAGE_SIZE_XLG,
   API_IMAGE_SIZE_2XLG,
   API_BASE_URL,
@@ -64,8 +61,6 @@ import {
 import {
   TREND_MOVIES_URL,
   MOVIES_URL,
-  GENRE_MOVIES_URL,
-  GENRE_SERIES_URL,
   UPCOMING_MOVIES_URL,
   OLD_MOVIES_URL,
   TVSHOWS_URL,
