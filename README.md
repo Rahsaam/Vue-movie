@@ -1,35 +1,22 @@
-# movie
+# Movie Website
 
-This template should help get you started developing with Vue 3 in Vite.
+This is the finall project of Alibaba Acdemy
 
-## Recommended IDE Setup
+## Description
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+This is a movie website built with Vue.js and Tailwind CSS. The website allows users to create an account, log in, and manage their movie watchlist and favorite list. Users can add and remove movies from their watchlist and favorite list and view their profile.
 
-## Customize configuration
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Features
 
-## Project Setup
+- User authentication: Sign up and log in functionality.
+- Profile page: View profile information.
+- Watchlist: Add and remove movies from the user's watchlist.
+- Favorite: Add and remove movies from the user's favorite.
+- Responsive design: Optimized for various screen sizes and devices.
+- Movie details: display movie details.
 
-```sh
-npm install
-```
 
-### Compile and Hot-Reload for Development
+## Demo
 
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+https://delightful-syrniki-459b6f.netlify.app/
