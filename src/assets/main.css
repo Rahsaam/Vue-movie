@@ -18,4 +18,22 @@ body {
     .genere-btn {
         @apply text-2sm bg-transparent border border-yellow-400 p-2 rounded-lg text-yellow-400 whitespace-nowrap font-extrabold hover:bg-yellow-400 hover:text-black transition
     }
+    .movie-feat {
+        @apply bg-my-color-hover-gray text-white rounded-md uppercase p-1 border text-2sm
+    }
+    .red-box {
+        @apply bg-my-color-dark-orange w-full py-10 sm:mt-0 mt-1  mx-auto  opacity-70 flex items-center justify-between rounded-lg hover:bg-my-color-custom-orange cursor-pointer
+    }
+    .input {
+        @apply bg-transparent border-b focus:outline-none text-white
+    }
+    .btn {
+        @apply text-black bg-yellow-300 p-2 inline-block font-bold text-lg rounded-xl w-32 shadow-xl
+    }
+    .section-title {
+        @apply text-my-color-hover-gray uppercase mb-2 text-lg
+    }
+    .for-you-movie {
+        @apply  p-2 w-full text-white flex items-center justify-between sm:px-16 pr-10 text-center sm:text-left text-sm rounded-3xl
+    }
 }

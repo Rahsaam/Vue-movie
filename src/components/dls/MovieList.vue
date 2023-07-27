@@ -6,42 +6,40 @@
                     <div class="border"></div>
                     <li id="series" class="text-lg font-bold scroll-mt-16"><a href="" :class="{activeTab: activeTab === 'series'}" @click.prevent="activeTab = 'series'" class="hover:font-extrabold transition">Series</a></li>
                 </ul>
-                <ul class="flex text-my-color-secodary-gray gap-x-3">
-                    <li><a href="" class="hover:text-my-color-dark-orange transition">All</a></li>
-                    <li><a href="" class="hover:text-my-color-dark-orange transition">Newest</a></li>
-                    <li><a href="" class="hover:text-my-color-dark-orange transition">Popular</a></li>
-                </ul>
+                
             </div>
             <main class="flex lg:flex-row flex-col ">
-                <section v-if="activeTab === 'movies'" class="lg:w-70% w-full grid grid-cols-2 items-end justify-center lg:grid-cols-1 md:grid-cols-5 sm:grid-cols-4 gap-x-2 lg:gap-x-0">
+                <section v-if="activeTab === 'movies'" class="lg:w-70% w-full grid grid-cols-1 items-end justify-center lg:grid-cols-1 md:grid-cols-5 sm:grid-cols-4 gap-x-2 lg:gap-x-0">
                     <movies 
                     v-for="mainMovie in mainMovies" 
                     :key="mainMovie.id"
+                    :id="mainMovie.id"
                     :mediaType="mainMovie.media_type"
                     :language="mainMovie.original_language"
                     :title="mainMovie.original_title"
                     :overview="mainMovie.overview"
-                    :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_LG}${mainMovie.poster_path}`"
+                    :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_XLG}${mainMovie.poster_path}`"
                     :release-date="mainMovie.release_date"
-                    :imdb="mainMovie.vote_average"
+                    :imdb="mainMovie.vote_average.toFixed(1)"
                     :rating="mainMovie.vote_count"
-                    casts="Jason statham, Adem sandler, Paul walker, Jim carry, Adam pally, Idris elba, Tika sumpter, Ben schwartz, James marsden"
-                    :genereNames="mainMovie.genre_names"/>
+                    
+                    :generes="mainMovie.genre_ids"/>
                 </section>
-                <section v-else class="lg:w-70% w-full grid grid-cols-2 items-end justify-center lg:grid-cols-1 md:grid-cols-5 sm:grid-cols-4 gap-x-2 lg:gap-x-0">
+                <section v-else class="lg:w-70% w-full grid grid-cols-1 items-end justify-center lg:grid-cols-1 md:grid-cols-5 sm:grid-cols-4 gap-x-2 lg:gap-x-0">
                     <series-content
-                    v-for="serial in seriesNader"
+                    v-for="serial in series"
                     :key="serial.id"
+                    :id="serial.id"
                     :mediaType="serial.media_type"
                     :language="serial.original_language"
                     :name="serial.original_name"
                     :overview="serial.overview"
-                    :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_LG}${serial.poster_path}`"
+                    :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_XLG}${serial.poster_path}`"
                     :release-date="serial.first_air_date"
-                    :imdb="serial.vote_average"
+                    :imdb="serial.vote_average.toFixed(1)"
                     :rating="serial.vote_count"
                     casts="Jason statham, Adem sandler, Paul walker, Jim carry, Adam pally, Idris elba, Tika sumpter, Ben schwartz, James marsden"
-                    :genereNames="serial.genre_names"/>
+                    :generes="serial.genre_ids"/>
                 </section>
                 
                 <div class="lg:w-1/3 w-full lg:ml-5">
@@ -57,11 +55,12 @@
 <script setup>
     import asideBar from '@/components/dls/AsideBar.vue'
     import movies   from '@/components/MainMovies/Movies.vue'
-    import seriesContent  from '@/components/MainMovies/SeriesNader.vue'
+    import seriesContent  from '@/components/MainMovies/Series.vue'
+    import { getMovieActors } from '@/components/utils/casts'; 
     
-    import {API_IMAGE_BASE_URL, API_IMAGE_SIZE_LG} from '../ApiDetails/api-constant';
+    import {API_IMAGE_BASE_URL, API_IMAGE_SIZE_LG, API_IMAGE_SIZE_XLG} from '../ApiDetails/api-constant';
 import {ref, watch } from 'vue';
-    defineProps(['mainMovies', 'upComings', 'oldMovies', 'tvShows', 'seriesNader'])
+    defineProps(['mainMovies', 'upComings', 'oldMovies', 'tvShows', 'series'])
 
     const activeTab = ref('movies')
 
@@ -83,6 +82,7 @@ import {ref, watch } from 'vue';
         }
         , 
         {immediate: true})
+    
     
 </script>
 

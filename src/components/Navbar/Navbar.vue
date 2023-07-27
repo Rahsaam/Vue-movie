@@ -2,7 +2,7 @@
 <div class="max-w-screen-2xl mx-auto">
   <nav class="fixed top-0 left-0 right-0 max-w-screen-2xl p-2 z-50 w-full flex justify-between items-center bg-my-color-primary-gray">
             <h1 class="text-2xl text-white"><span class="text-yellow-400 font-extrabold text-3xl">M</span>OvieZ<span class="font-extrabold text-3xl text-yellow-400">Z</span></h1>
-            <div class="flex">
+            <div class="sm:flex hidden">
                 <label aria-hidden="true" class="opacity-0" for="searchMovie" id="searchMovie">search</label>
                 <input class="border-2 border-r-0 border-red-900  rounded-l-xl outline-none bg-slate-900 md:w-40 opacity-60 text-white text-sm px-2 placeholder:italic placeholder:text-sm "
                  placeholder="Search movie..." 
@@ -14,11 +14,11 @@
                 </svg>
             </div>
             <ul class="hidden md:flex space-x-7 text-white" aria-haspopup="menu" aria-expanded="false" aria-controls="menuContent">
-                <li class="hover:text-slate-300" aria-selected="true"><a  href="logout.html">Logout</a></li>
-                <li class="hover:text-slate-300" aria-selected="true"><a  href="login.html">Login</a></li>
-                <li class="hover:text-slate-300" aria-selected="true"><a  href="main.html">Watch list</a></li>
-                <li class="hover:text-slate-300" aria-selected="true"><a  href="profile.html">Profile</a></li>
-                <li class="hover:text-slate-300" aria-selected="true"><a  href="index.html">Movie page</a></li>
+                <nav-link v-if="user" text="Logout" to="/logout"/>
+                <nav-link v-if="!user" text="Login" to="/login"/>
+                <nav-link  text="Home" to="/"/>
+                <nav-link v-if="user" text="Profile" to="/profile"/>
+                <nav-link v-if="user" text="Watchlist" to="/watchList"/>
 
             </ul>
             <!-- responsiv menu icon -->
@@ -31,21 +31,26 @@
             aria-expanded="true"
             aria-controls="menu"
             aria-haspopup="menu">
-                <li class="hover:text-slate-300" aria-selected="true"><a  href="main.html">Watch list</a></li>
-                <li class="hover:text-slate-300" aria-selected="true"><a  href="profile.html">Profile</a></li>
-                <li class="hover:text-slate-300" aria-selected="true"><a  href="index.html">Movie page</a></li>
-                <li class="hover:text-slate-300" aria-selected="true"><a  href="login.html">Login</a></li>
-                <li class="hover:text-slate-300" aria-selected="true"><a  href="logout.html">Logout</a></li>
+            <nav-link v-if="user" text="Logout" to="/logout"/>
+                <nav-link v-if="!user" text="Login" to="/login"/>
+                <nav-link  text="Home" to="/"/>
+                <nav-link v-if="user" text="Profile" to="/profile"/>
+                <nav-link v-if="user" text="Watchlist" to="/watchList"/>
             </ul>
     </nav>
 </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { inject, ref } from "vue";
+import { LOGIN } from '@/components/utils/keys'
+import { USER } from '@/components/utils/keys'
+
+const user = inject(USER)
 
     const showMenu = ref(false)
     const toggleMenu = () => {
         showMenu.value = !showMenu.value
     }
+import navLink from '@/components/Navbar/NavLinks.vue'
 </script>

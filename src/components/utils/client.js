@@ -1,6 +1,7 @@
 import {API_READ_ACCESS_TOKEN} from '../ApiDetails/api-constant'
 
 export async function client(url, option = {}) {
+    
    const fetchOptions = {
     method: 'GET',
     ...option,
@@ -17,4 +18,5 @@ export async function client(url, option = {}) {
        throw data
    }
    return data
+
 }

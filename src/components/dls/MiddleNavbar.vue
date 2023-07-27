@@ -6,9 +6,6 @@
                 <a class="mt-3 text-sm md:text-lg sm:p-2 md:p-3" href="#trend">Trend movies</a>
             </li>
             <li class="hover:bg-white hover:text-my-color-dark-red transition rounded-md cursor-pointer" aria-selected="true">
-                <a class="mt-3 text-sm md:text-lg sm:p-2 md:p-3" href="#genere">Generes</a>
-            </li>
-            <li class="hover:bg-white hover:text-my-color-dark-red transition rounded-md cursor-pointer" aria-selected="true">
                 <a class="mt-3 text-sm md:text-lg sm:p-2 md:p-3" href="#movies">Movies</a>
             </li>
             <li class="hover:bg-white hover:text-my-color-dark-red transition rounded-md cursor-pointer" aria-selected="true">
