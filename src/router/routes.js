@@ -1,4 +1,4 @@
-import MainPage from '@/components/MoviePages/MainPage.vue'
+import HomePage from '@/components/HomePage/HomePage.vue'
 import MovieDetailPage from '@/components/MoviePages/MovieDetailPage.vue'
 import LoginPage from '@/components/MoviePages/LoginPage.vue'
 import SerialDetailPage from '@/components/MoviePages/SerialDetailPage.vue'
@@ -7,7 +7,7 @@ import WatchListDetailPage from '@/components/MoviePages/WatchListDetailPage.vue
 import ProfilePage from '@/components/MoviePages/ProfilePage.vue'
 import LogoutPage from '@/components/MoviePages/LogoutPage.vue'
 import FavoritePage from '@/components/MoviePages/FavoritePage.vue'
-import TrendPage from '@/components/MoviePages/TrendPage.vue'
+import SingleMoviePage from '@/components/MovieDetailComponents/SingleMoviePage.vue'
 import OldMoviesPage from '@/components/MoviePages/OldMoviesPage.vue'
 import NotFoundPage from '@/components/MoviePages/NotFoundPage.vue'
 
@@ -15,7 +15,7 @@ export const routes = [
   {
     path: '/',
     name: 'home',
-    component: MainPage
+    component: HomePage
   },
   {
     path: '/movie/:id',
@@ -61,9 +61,9 @@ export const routes = [
     meta: { requiresAuth: true }
   },
   {
-    path: '/trends/:id',
-    name: 'Trend',
-    component: TrendPage
+    path: '/movie/:id',
+    name: 'SingleMovie',
+    component: SingleMoviePage
   },
   {
     path: '/old-movies/:id',

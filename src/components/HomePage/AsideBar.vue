@@ -65,9 +65,9 @@
 </template>
 
 <script setup>
-import comingSoon from '@/components/Aside/ComingSoon.vue'
-import oldMoviesContent from '@/components/Aside/OldMovies.vue'
-import tvShowss from '@/components/Aside/TvShows.vue'
+import comingSoon from '@/components/HomePage/Aside/ComingSoon.vue'
+import oldMoviesContent from '@/components/HomePage/Aside/OldMovies.vue'
+import tvShowss from '@/components/HomePage/Aside/TvShows.vue'
 
 import { API_IMAGE_BASE_URL, API_IMAGE_SIZE_MD, API_IMAGE_SIZE_XLG } from '@/components/ApiDetails/api-constant'
 defineProps(['upComings', 'oldMovies', 'tvShows'])

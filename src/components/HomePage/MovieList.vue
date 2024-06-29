@@ -53,9 +53,9 @@
 </template>
 
 <script setup>
-    import asideBar from '@/components/dls/AsideBar.vue'
-    import movies   from '@/components/MainMovies/Movies.vue'
-    import seriesContent  from '@/components/MainMovies/Series.vue'
+    import asideBar from '@/components/HomePage/AsideBar.vue'
+    import movies   from '@/components/HomePage/Movies.vue'
+    import seriesContent  from '@/components/HomePage/Series.vue'
     import { getMovieActors } from '@/components/utils/casts'; 
     
     import {API_IMAGE_BASE_URL, API_IMAGE_SIZE_LG, API_IMAGE_SIZE_XLG} from '../ApiDetails/api-constant';

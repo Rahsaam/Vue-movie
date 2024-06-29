@@ -50,7 +50,7 @@
 
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue';
-import trendMovies from '@/components/dls/TrendMovies.vue';
+import trendMovies from '@/components/HomePage/TrendMovies.vue';
 import {
   API_IMAGE_BASE_URL,
   API_IMAGE_SIZE_XLG,
@@ -67,10 +67,10 @@ import {
   SERIES_URL
 } from '@/components/ApiDetails/endPoints'
 import {client} from '@/components/utils/client'
-import mainPoster from '@/components/dls/MainPoster.vue'
+import mainPoster from '@/components/HomePage/MainPoster.vue'
 import sppiner from '@/components/dls/Sppiner.vue'
-import middleNavbar from '@/components/dls/MiddleNavbar.vue'
-import movieList from '@/components/dls/MovieList.vue'
+import middleNavbar from '@/components/HomePage/MiddleNavbar.vue'
+import movieList from '@/components/HomePage/MovieList.vue'
 import footerContent from '@/components/dls/FooterContent.vue'
 import Navbar from '@/components/Navbar/Navbar.vue'
 
@@ -140,7 +140,7 @@ onUnmounted(() => {
 })
 
 </script>
-
+ 
 <style scoped>
  
 </style>
