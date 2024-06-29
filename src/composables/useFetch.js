@@ -23,4 +23,4 @@ export function useFetch(initialData = []) {
         }
     }
     return{doFetch, data, error, loading}
-}
+} 

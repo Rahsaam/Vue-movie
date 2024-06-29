@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{name: 'Trend', params: {id}}">
+  <router-link :to="{name: 'SingleMovie', params: {id}}">
     <div class="text-white relative" aria-selected="true">
       <div class="relative min-w-[150px] cursor-pointer">
         <div class="absolute flex items-center justify-between left-2 right-2 top-1 z-20">

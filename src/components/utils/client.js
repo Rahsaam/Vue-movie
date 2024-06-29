@@ -13,6 +13,7 @@ export async function client(url, option = {}) {
     }
    }
    const response = await fetch(url, fetchOptions)
+//    console.log('response' , response.json());
    const data = await response.json()
    if (!response.ok) {
        throw data
