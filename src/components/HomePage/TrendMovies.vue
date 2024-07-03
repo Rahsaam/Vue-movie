@@ -1,10 +1,10 @@
 <template>
-  <router-link :to="{name: 'SingleMovie', params: {id}}">
+  <router-link :to="{name: 'SingleMovie', params: {id: movie.id}}">
     <div class="text-white relative" aria-selected="true">
       <div class="relative min-w-[150px] cursor-pointer">
         <div class="absolute flex items-center justify-between left-2 right-2 top-1 z-20">
           <img src="../../assets/IMDB_Logo.png" class="w-10 h-4" alt="imdb-img" />
-          <span class="imdb-point">{{ imdb }}</span>
+          <span class="imdb-point">{{ movie.vote_average }}</span>
         </div>
         <img :style="movieActiveStyle" :src="src" :alt="title" class="w-full h-full rounded-md" />
         <div
@@ -17,7 +17,7 @@
           </div>
         </div>
       </div>
-      <span>{{ title }}</span>
+      <span>{{ title }}</span>  
     </div>
   </router-link>
 </template>
@@ -26,13 +26,8 @@
 import { computed } from 'vue'
 
 const props = defineProps({
-  rating: Number,
   src: String,
-  title: String,
-  releaseDate: String,
-  imdb: Number,
-  movieActiveStyle: Object,
-  id: Number
+  movie: Object
 })
 
 const year = computed(() => new Date(props.releaseDate).getFullYear())

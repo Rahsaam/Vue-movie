@@ -1,15 +1,14 @@
 import {API_READ_ACCESS_TOKEN} from '../ApiDetails/api-constant'
 
-export async function client(url, option = {}) {
+export async function client(url, options, method = 'GET') {
     
    const fetchOptions = {
-    method: 'GET',
-    ...option,
+    method: method,
+    body : JSON.stringify(options),
     headers: {
         accept: 'application/json',
         'Content-type': 'application/json',
         Authorization: `Bearer ${API_READ_ACCESS_TOKEN}`,
-        ...(option.headers ?? {})
     }
    }
    const response = await fetch(url, fetchOptions)

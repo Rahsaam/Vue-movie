@@ -1,19 +1,16 @@
-import { inject, ref } from "vue";
+import {ref } from "vue";
 import {client} from '@/components/utils/client.js'
-import { USER } from "@/components/utils/keys";
 
 export function useFetch(initialData = []) {
-    const user = inject(USER)
-    console.log('user_id', user.value);
     const data = ref(initialData)
     const loading = ref(false)
     const error = ref(null)
 
-    async function doFetch(url, options) {
+    async function doFetch(url, options, method = 'GET') {
         try {
             error.value = null
             loading.value = true
-            const res = await client(url , options)
+            const res = await client(url , options, method)
             data.value = res
         } catch(err) {
             error.value = err

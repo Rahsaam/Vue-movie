@@ -18,11 +18,6 @@ export const routes = [
     component: HomePage
   },
   {
-    path: '/movie/:id',
-    name: 'movieDetail',
-    component: MovieDetailPage
-  },
-  {
     path: '/serial/:id',
     name: 'serialDetail',
     component: SerialDetailPage
@@ -63,7 +58,7 @@ export const routes = [
   {
     path: '/movie/:id',
     name: 'SingleMovie',
-    component: SingleMoviePage
+    component: SingleMoviePage,
   },
   {
     path: '/old-movies/:id',

@@ -2,21 +2,12 @@
   <article class="flex lg:flex-row flex-col lg:mt-14 mt-4">
     <div class="relative lg:w-72 text-white cursor-pointer">
       <div>
-        <button
-          @click="addTowatchList(id)"
-          v-if="activeTab === 'emptyBookMark'"
-          class="absolute top-2 left-2 z-20 border-none"
-        >
-          <i class="fa-regular fa-bookmark text-xl hover:text-gray-500"></i>
-        </button>
-        <button v-else class="absolute top-2 left-2 z-20 border-none">
-          <i class="fa-solid fa-bookmark text-xl"></i>
-        </button>
+      <add-to-watch-list-btn class="absolute top-2 left-2 z-20 border-none" px="5px" py="5px" :media_id="id" :media_type="mediaType"/>
         <button @click="addToFavorite(id)" class="absolute top-2 right-2 z-20">
           <i class="fa-regular fa-heart hover:text-red-500 text-xl"></i>
         </button>
       </div>
-      <router-link :to="{ name: 'movieDetail', params: { id } }">
+      <router-link :to="{ name: 'SingleMovie', params: { id } }">
         <img :src="src" class="w-full rounded-2xl" :alt="title" />
         <div
           class="text-overlay text-center absolute inset-0 flex flex-col justify-center items-center lg:w-full h-full overflow-hidden bg-black bg-opacity-70 p-6 rounded-xl backdrop-blur-lg opacity-0 duration-300 text-xl hover:opacity-90"
@@ -66,6 +57,7 @@
 
 <script setup>
 import { computed, inject, onMounted, ref, watch } from 'vue'
+import addToWatchListBtn from '@/components/General/addToWatchListBtn.vue'
 import { getGenreNames } from '@/components/utils/genres'
 import { getMovieActors } from '@/components/utils/casts'
 import { USER } from '@/components/utils/keys'
@@ -100,35 +92,7 @@ const activeTab = ref(localStorage.getItem('activeTab') || 'emptyBookMark')
 
 
 const sessionId = sessionStorage.getItem('session_id')
-async function addTowatchList(movieId) {
-  try {
-    if (!user.value) {
-      alert('please login to the page first')
-    }
-    const url = `${API_BASE_URL}${API_VERSION}/account/${user.value.id}/watchlist?session_id=${sessionId}`
-    const options = {
-      method: 'POST',
-      headers: {
-        accept: 'application/json',
-        'content-type': 'application/json',
-        Authorization: `Bearer ${API_READ_ACCESS_TOKEN}`
-      },
-      body: JSON.stringify({
-        media_type: 'movie',
-        media_id: movieId,
-        watchlist: true
-      })
-    }
 
-    const response = await fetch(url, options)
-    const data = await response.json()
-    toast.success('added to watch list')
- 
-    // activeTab.value = 'solidBookMark'
-  } catch (err) {
-    console.log(err)
-  }
-}
 // get actors
 const response = getMovieActors(props.id)
 response.then(data => actorNames.value = data)
