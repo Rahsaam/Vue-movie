@@ -7,6 +7,11 @@ export const OLD_MOVIES_URL      = '/movie/top_rated'
 export const TVSHOWS_URL         = '/trending/tv/day'
 export const SERIES_URL          = '/trending/tv/day'
 
+// search api
+// export const PEOPLE_URL = '/search/person'
+// export const MOVIES_URL = '/search/movie'
+// export const TV_URL     = '/search/tv'
+
 // login url apis
 export const CREATE_TOKEN_URL    = '/authentication/token/new'
 export const VALIDATE_LOGIN_URL  = '/authentication/token/validate_with_login'

@@ -2,19 +2,31 @@
   <div class="sm:flex hidden">
     <div class="search-container w-full">
       <i class="fa-solid fa-magnifying-glass search-icon text-white text-2xl"></i>
-      <input
-        class="search-input border-2 border-yellow-900 rounded-xl outline-none bg-black md:w-full text-white p-2 placeholder:italic"
-        placeholder="Search movie..."
-        type="text"
-        aria-label="Search"
-        name="searchMovie"
-      />
+      <form @submit.prevent="submitForm">
+        <input
+          v-model="search"
+          class="search-input border-2 border-yellow-900 rounded-xl outline-none bg-black md:w-full text-white p-2 placeholder:italic"
+          placeholder="Search movie..."
+          type="text"
+          aria-label="Search"
+          name="searchMovie"
+        />
+      </form>
     </div>
   </div>
 </template>
 
-<script>
-export default {}
+<script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+
+const router = useRouter()
+const search = ref('')
+
+function submitForm () {
+  router.push({name: 'Result', query: { query: search.value }})
+}
 </script>
 
 <style scoped>

@@ -1,4 +1,5 @@
 import {useFetch} from "@/composables/useFetch"
+import { computed } from "vue";
 
 export function useSearch () {
     const {data, loading, error, doFetch} = useFetch();
@@ -8,5 +9,8 @@ export function useSearch () {
             params.append('page', page)
             await doFetch(`${url}?${params}`)
          }
-    return {data, loading, error, doFetch, doSearch}
+         const resultCount = computed(() => {
+            return data.value.total_results
+         })
+    return {data, loading, error, doFetch, doSearch, resultCount}
 }

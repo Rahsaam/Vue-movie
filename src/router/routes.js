@@ -1,5 +1,4 @@
 import HomePage from '@/components/HomePage/HomePage.vue'
-import MovieDetailPage from '@/components/MoviePages/MovieDetailPage.vue'
 import LoginPage from '@/components/MoviePages/LoginPage.vue'
 import SerialDetailPage from '@/components/MoviePages/SerialDetailPage.vue'
 import WatchListPage from '@/components/MoviePages/WatchListPage.vue'
@@ -9,6 +8,7 @@ import LogoutPage from '@/components/MoviePages/LogoutPage.vue'
 import FavoritePage from '@/components/MoviePages/FavoritePage.vue'
 import SingleMoviePage from '@/components/MovieDetailComponents/SingleMoviePage.vue'
 import OldMoviesPage from '@/components/MoviePages/OldMoviesPage.vue'
+import SearchResultPage from '@/components/MoviePages/SearchResultPage.vue'
 import NotFoundPage from '@/components/MoviePages/NotFoundPage.vue'
 
 export const routes = [
@@ -64,6 +64,11 @@ export const routes = [
     path: '/old-movies/:id',
     name: 'OldMovies',
     component: OldMoviesPage
+  },
+  {
+    path: '/result',
+    name: 'Result',
+    component: SearchResultPage
   },
   { path: '/:pathMatch(.*)*', component: NotFoundPage }
 ]
