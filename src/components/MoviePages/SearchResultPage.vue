@@ -5,8 +5,8 @@
     :title="movieActive.original_title"
     :id="movieActive.id"
   /> -->
-  <middleNavbar />
   <div class="h-16"></div>
+  <middleNavbar />
   <PeopleResultSection />
   <MovieResultSection />
   <TvShowResultSection />
@@ -14,6 +14,7 @@
 
 <script setup>
     import Navbar from '@/components/Navbar/Navbar.vue'
+    import middleNavbar from '@/components/HomePage/middleNavbar.vue'
     import MovieResultSection from '@/components/SearchResult/MovieResultSection.vue'
     import PeopleResultSection from '@/components/SearchResult/PeopleResultSection.vue'
     import TvShowResultSection from '@/components/SearchResult/TvShowResultSection.vue'

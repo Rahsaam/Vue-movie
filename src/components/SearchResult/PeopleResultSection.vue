@@ -18,14 +18,16 @@ import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const {query} = route.query
+let {query} = route.query
 const showResult = ref([])
-const showPage = ref()
+const showPage = ref(1)
 
 const {data, error, loading, resultCount, doSearch} = useSearch()
 
-watch(route, () => {
-    showResult.value.length = 0;
+
+watch(route, (newRoute) => {
+    query = newRoute.query.query
+    showResult.value = [];
     showPage.value = 1
     doSearch(`${API_BASE_URL}${API_VERSION}/search/person`, query,  showPage.value)
 },{immediate: true})
@@ -35,7 +37,6 @@ watch(data, () => {
         showResult.value.push(...(data.value.results))
     }
 })
-console.log('showResult', showResult.value);
 </script>
 
 <style>
