@@ -39,7 +39,7 @@
                 :class="{ selected: movie.id === movieActive.id }"
               />
               <div
-                class="text-overlay text-center absolute inset-0 flex flex-col justify-center items-center w-full h-full overflow-hidden bg-black bg-opacity-70 p-6 rounded-md backdrop-blur-lg opacity-0 duration-300 text-xl hover:opacity-90"
+                class="overlay-img"
               >
                 <i class="fas fa-play"></i>
               </div>

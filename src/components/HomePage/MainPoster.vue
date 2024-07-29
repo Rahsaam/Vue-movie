@@ -7,7 +7,7 @@
             <div class="text-white w-full max-w-7xl mx-auto left-0 right-0 absolute bottom-16 px-5 z-20">
                 <h2 class="font-bold text-3xl md:text-5xl uppercase">{{ title }}</h2>
                 <div class="flex w-full justify-between  sm:py-4">
-                    <primary-btn icon="play" :id="id">watch trailer</primary-btn>
+                    <primary-btn icon="play" :id="id" path="SingleMovie">watch trailer</primary-btn>
                 </div>
             </div>
         </div>

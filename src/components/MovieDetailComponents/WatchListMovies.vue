@@ -25,10 +25,13 @@
 
 <script setup>
 import {getWatchGenreNames} from '@/components/utils/genres'
-import { inject, ref } from 'vue'
+import { inject, ref, watch } from 'vue'
 import { USER } from '@/components/utils/keys'
 import { API_BASE_URL, API_VERSION, API_READ_ACCESS_TOKEN} from '@/components/ApiDetails/api-constant'
 import { useToast } from 'vue-toastification'
+import { useFetch } from '@/composables/useFetch.js'
+
+const {data, loading, error, doFetch} = useFetch();
 const toast = useToast()
 const genreNames = ref([])
 const user = inject(USER)
@@ -45,34 +48,20 @@ let res = getWatchGenreNames(props.genres)
 res.then(data => genreNames.value = data)
 
 
-async function removeFromWatchList(movieId) {
-  try {
-    if (!user.value) {
-      alert('please login to the page first')
-    }
-    const url = `${API_BASE_URL}${API_VERSION}/account/${user.value.id}/watchlist`
-    const options = {
-      method: 'POST',
-      headers: {
-        accept: 'application/json',
-        'content-type': 'application/json',
-        Authorization: `Bearer ${API_READ_ACCESS_TOKEN}`
-      },
-      body: JSON.stringify({
-        media_type: 'movie',
-        media_id: movieId,
-        watchlist: false
-      })
-    }
-
-    const response = await fetch(url, options)
-    const data = await response.json()
-    toast.success('remove from watch list')
-    window.location.reload()
-  } catch (err) {
-    console.log(err)
-  }
+function removeFromWatchList(movieId) {
+  doFetch(
+    `${API_BASE_URL}${API_VERSION}/account/${user.value.id}/watchlist`,
+    { media_type: 'movie', media_id: movieId, watchlist: false },
+    'POST'
+  )
+  toast.success('movie removed')
 }
+
+// watch(data, (updateData) => {
+//   if (updateData) {
+//     doFetch(`${API_BASE_URL}${API_VERSION}/account/${user.value.id}/watchlist`)
+//   }
+// })
 
 
 </script>
