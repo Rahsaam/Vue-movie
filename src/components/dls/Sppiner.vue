@@ -5,7 +5,7 @@
   <style>
   .spin {
       border: 3px solid transparent;
-      border-top-color: #ff8800;
+      border-top-color: #ecf002;
       width: 50px;
       height: 50px;
       border-radius: 50%;

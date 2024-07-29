@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <router-link :to="{name: 'people', params: {id: person.id}}">
     <img class="w-[150px] h-[230px]" :src="imagePerson" alt="casts" />
     <p class="text-white">{{ props.person.name }}</p>
-  </div>
+  </router-link>
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { API_IMAGE_BASE_URL } from '../ApiDetails/api-constant'
+import { computed } from "vue"
+import { API_IMAGE_BASE_URL } from "@/components/ApiDetails/api-constant"
 import defaultImage from '@/assets/profile_placeholder.png'
 
 const props = defineProps(['person'])

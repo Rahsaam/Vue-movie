@@ -9,6 +9,7 @@ import FavoritePage from '@/components/MoviePages/FavoritePage.vue'
 import SingleMoviePage from '@/components/MovieDetailComponents/SingleMoviePage.vue'
 import OldMoviesPage from '@/components/MoviePages/OldMoviesPage.vue'
 import SearchResultPage from '@/components/MoviePages/SearchResultPage.vue'
+import PeoplePage from '@/components/MoviePages/PeoplePage.vue'
 import NotFoundPage from '@/components/MoviePages/NotFoundPage.vue'
 
 export const routes = [
@@ -69,6 +70,11 @@ export const routes = [
     path: '/result',
     name: 'Result',
     component: SearchResultPage
+  },
+  {
+    path: '/people/:id',
+    name: 'people',
+    component: PeoplePage
   },
   { path: '/:pathMatch(.*)*', component: NotFoundPage }
 ]
