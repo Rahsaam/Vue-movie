@@ -57,11 +57,5 @@ function removeFromWatchList(movieId) {
   toast.success('movie removed')
 }
 
-// watch(data, (updateData) => {
-//   if (updateData) {
-//     doFetch(`${API_BASE_URL}${API_VERSION}/account/${user.value.id}/watchlist`)
-//   }
-// })
-
 
 </script>
