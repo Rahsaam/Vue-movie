@@ -11,7 +11,7 @@
           class="grid lg:grid-cols-4 sm:grid-cols-2 container max-w-sm sm:max-w-2xl md:max-w-5xl lg:max-w-7xl mx-auto px-5 sm:p-0 m-6"
         >
           <watch-list-movies
-            v-for="movie in data"
+            v-for="(movie, index) in data"
             :key="movie.id"
             :id="movie.id"
             :src="`${API_IMAGE_BASE_URL}${API_IMAGE_SIZE_XLG}${movie.poster_path}`"
@@ -19,7 +19,7 @@
             :title="movie.title"
             :release="movie.release_date"
             :liked="movie.popularity"
-            @change="showOnTop"
+            @removeFromWatch="data.splice(index, 1)"
           />
         </section>
       </div>
@@ -38,4 +38,6 @@ import Navbar from '@/components/Navbar/Navbar.vue'
 import DataLoader from '@/components/General/DataLoader.vue'
 import footerContent from '@/components/dls/FooterContent.vue'
 const user = inject(USER)
+
+console.log(user.value);
 </script>

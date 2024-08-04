@@ -8,7 +8,7 @@
             Loading your data...
         </slot>
     </div>
-        <slot v-else-if="error" name="error">{{ error }}</slot>
+        <slot v-else-if="error" name="error" class="text-white">{{ error }}</slot>
         <slot v-else name="loaded" :data="getDataArr" />
   </div>
 </template>
@@ -16,7 +16,6 @@
 <script setup>
 import Sppiner from '@/components/dls/Sppiner.vue'
 import { useFetch } from '@/composables/useFetch.js'
-// import debounce from 'lodash'
 import { ref, watch } from 'vue';
 
 const props = defineProps({

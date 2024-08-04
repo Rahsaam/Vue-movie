@@ -67,6 +67,7 @@ async function sigin() {
     
   } catch (error) {
     toast.error('Login Failed MAN')
+    console.log(error);
   }
 }
 </script>

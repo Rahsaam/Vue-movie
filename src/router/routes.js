@@ -2,7 +2,6 @@ import HomePage from '@/components/HomePage/HomePage.vue'
 import LoginPage from '@/components/MoviePages/LoginPage.vue'
 import SerialDetailPage from '@/components/MoviePages/SerialDetailPage.vue'
 import WatchListPage from '@/components/MoviePages/WatchListPage.vue'
-import WatchListDetailPage from '@/components/MoviePages/WatchListDetailPage.vue'
 import ProfilePage from '@/components/MoviePages/ProfilePage.vue'
 import LogoutPage from '@/components/MoviePages/LogoutPage.vue'
 import FavoritePage from '@/components/MoviePages/FavoritePage.vue'
@@ -38,11 +37,6 @@ export const routes = [
     name: 'WatchList',
     component: WatchListPage,
     meta: { requiresAuth: true }
-  },
-  {
-    path: '/watchList/:id',
-    name: 'WatchListDetail',
-    component: WatchListDetailPage
   },
   {
     path: '/profile',
