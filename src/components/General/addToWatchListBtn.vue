@@ -6,7 +6,8 @@
     <div v-if="!isInWatchList.data.value.watchlist">
         <img 
             v-if="loading"
-            src="@/assets/sppiner.gif" 
+            class="w-6"
+            src="@/assets/spinner.gif" 
             alt="loading">
         <img 
             v-else-if="data.success"

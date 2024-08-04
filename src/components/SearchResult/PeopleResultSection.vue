@@ -1,5 +1,4 @@
 <template>
-  <!-- <h2 class="text-yellow-400 text-2xl">Casts</h2> -->
   <p class="text-white" v-if="loading">Loading...</p>
   <p class="text-white" v-else-if="error">these is something wrong try again :(</p>
   <div class="flex flex-wrap justify-between" v-else>
