@@ -1,8 +1,8 @@
 <template>
-  <div class="w-full">
+  <div class="w-full text-center">
     <div class="flex justify-between mb-3 items-center">
       <h2 class="text-yellow-400 text-2xl">
-        <slot></slot>
+        <slot name="title"></slot>
       </h2>
     </div>
     <div class="flex justify-between flex-wrap w-full">
@@ -10,6 +10,7 @@
         <people-card :person="person" />
       </div>
     </div>
+      <slot name="pagination"></slot>
   </div>
 </template>
 
