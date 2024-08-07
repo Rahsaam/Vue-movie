@@ -1,8 +1,11 @@
 <template>
   <SearchLoader :endpoint="`${API_BASE_URL}/3/search/movie`">
+    <template #loading>
+      <Sppiner />
+    </template>
     <template #loaded="{ data, resultCount, totalPages, showPage }">
-      <people-rows :persons="data.slice(startIndex, endIndex)">
-        <template #title>Casts</template>
+      <movie-rows :movies="data.slice(startIndex, endIndex)">
+        <template #title>Movies</template>
         <template #pagination>
           <Pagination
             :total-results="resultCount"
@@ -14,12 +17,14 @@
             @pageChanged="(pageNum) => currentPage = pageNum"
           />
         </template>
-      </people-rows>
+      </movie-rows>
     </template>
   </SearchLoader>
 </template>
 
 <script setup>
+import Sppiner from '@/components/dls/Sppiner.vue'
+import MovieRows from '@/components/General/MovieRows.vue'
 import Pagination from '@/components/General/Pagination.vue'
 import SearchLoader from '@/components/General/SearchLoader.vue'
 import { API_BASE_URL } from '@/components/ApiDetails/api-constant'

@@ -25,6 +25,7 @@ const props = defineProps({
 import {useSearch} from '@/composables/useSearch.js'
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import Sppiner from '@/components/dls/Sppiner.vue'
 const route = useRoute()
 let { query } = route.query
 const showPage = ref(1)

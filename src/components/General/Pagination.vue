@@ -46,7 +46,7 @@ const prevPage = computed(() => {
 })
 
 const nextPage = computed(() => {
-  return props.currentPage < props.totalPages ? props.currentPage + 1 : props.totalPages
+  return props.currentPage < moviesPages.value - 1 ? props.currentPage + 1 : props.currentPage
 })
 
 const moviesPages = computed(() => {
