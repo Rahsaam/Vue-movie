@@ -12,5 +12,8 @@ export function useSearch () {
          const resultCount = computed(() => {
             return data.value.total_results
          })
-    return {data, loading, error, doFetch, doSearch, resultCount}
+         const totalPages = computed(() => {
+            return data.value.total_pages
+         })
+    return {data, loading, error, doSearch, resultCount, totalPages}
 }

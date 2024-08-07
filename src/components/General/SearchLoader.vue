@@ -6,8 +6,8 @@
       </slot>
     </div>
     <slot v-else-if="error" name="error" class="text-white">{{ error }}</slot>
-    <slot v-else name="loaded" :data="data.results" :resultCount="resultCount" />
-    <pre class="text-white">data: {{ resultCount }}</pre>
+    <slot v-else name="loaded" :data="data.results" :resultCount="resultCount" :total-pages="totalPages" :show-page="showPage"/>
+    <!-- <pre class="text-white">showPage: {{ showPage }}</pre> -->
   </div>
 </template>
 
@@ -28,7 +28,7 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 let { query } = route.query
 const showPage = ref(1)
-const { data, loading, error, resultCount, doSearch } = useSearch()
+const { data, loading, error, resultCount, doSearch, totalPages } = useSearch()
 
 
 watch(

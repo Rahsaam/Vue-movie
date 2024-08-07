@@ -1,6 +1,6 @@
 <template>
   <router-link :to="{name: 'people', params: {id: person.id}}">
-    <img class="w-[150px] h-[230px]" :src="imagePerson" alt="casts" />
+    <img class="w-[200px] h-[290px]" :src="imagePerson" alt="casts" />
     <p class="text-white">{{ props.person.name }}</p>
   </router-link>
 </template>
