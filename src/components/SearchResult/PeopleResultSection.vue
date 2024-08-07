@@ -1,5 +1,11 @@
 <template>
   <SearchLoader :endpoint="`${API_BASE_URL}/3/search/person`">
+    <template #loading>
+      <Sppiner />
+    </template>
+    <template #error>
+      <span class="text-white">there is no person...</span>
+    </template>
     <template #loaded="{ data, resultCount, totalPages, showPage }">
       <people-rows :persons="data.slice(startIndex, endIndex)">
         <template #title>Casts</template>
@@ -20,6 +26,7 @@
 </template>
 
 <script setup>
+import Sppiner from '@/components/dls/Sppiner.vue'
 import PeopleRows from '@/components/General/PeopleRows.vue'
 import Pagination from '@/components/General/Pagination.vue'
 import SearchLoader from '@/components/General/SearchLoader.vue'

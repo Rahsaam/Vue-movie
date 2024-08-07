@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
 import { router } from './router'
 import useAuth from './composables/useAuth'
+import imageDirective from '@/directives/imagePreLoader.js';
 library.add(faUserSecret)
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
@@ -30,4 +31,5 @@ app.use(router)
 useAuth(app)
 app.use(Toast, options) 
 app.component('font-awesome-icon', FontAwesomeIcon)
+app.directive('img', imageDirective);
 app.mount('#app')
